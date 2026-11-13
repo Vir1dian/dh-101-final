@@ -1,0 +1,65 @@
+/*
+ * Design tokens from the Figma file ("DH101 - Project Website", V1).
+ * Theme: vintage passport binder / archive system — desaturated dark base,
+ * aged-paper highlights.
+ *
+ * Sizes are fluid: each clamp() hits the Figma value exactly at a 1920px-wide
+ * window (the frame width) and scales down from there, with a readable floor.
+ * The comment after each one is the Figma value.
+ */
+:root {
+  /* Colour */
+  --ink: #2c2c31; /* page + nav background, text on paper */
+  --ink-deep: #171719; /* footer, empty portrait slots */
+  --paper: #e4d5c9; /* cards, borders, text on dark */
+  --paper-muted: #a69b92; /* captions on dark */
+  --rule: #71717d; /* thin separators, captions on paper */
+  --ink-muted: #55555f; /* small secondary text on paper (darker than --rule for contrast) */
+  --sage: #d7e4c9; /* "What is…" card */
+  --sky: #c9d2e4; /* "Research questions" card */
+  --watermark: rgba(0, 38, 143, 0.05);
+  --hero-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Type */
+  --font-sans: 'Archivo Narrow', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --fs-hero: clamp(2.75rem, 5vw, 6rem); /* 96 */
+  --fs-display: clamp(1.75rem, 2.5vw, 3rem); /* 48 */
+  --fs-hero-caption: clamp(1.125rem, 2.0833vw, 2.5rem); /* 40 */
+  --fs-footer: clamp(0.9375rem, 1.875vw, 2.25rem); /* 36 */
+  --fs-card-title: clamp(1.25rem, 1.6667vw, 2rem); /* 32 */
+  --fs-field: clamp(1.25rem, 1.6667vw, 2rem); /* 32 */
+  --fs-question: clamp(1.0625rem, 1.4583vw, 1.75rem); /* 28 */
+  --fs-body: clamp(1rem, 1.25vw, 1.5rem); /* 24 */
+  --fs-tab: clamp(0.875rem, 1.25vw, 1.5rem); /* 24 */
+  --fs-label: clamp(0.75rem, 0.8333vw, 1rem); /* 16 */
+  --fs-watermark: clamp(2.5rem, 5vw, 6rem); /* 96 */
+  --fs-watermark-small: clamp(1.75rem, 3.3333vw, 4rem); /* 64 */
+  --lh-body: 1.25;
+
+  /* Space + shape */
+  --page-pad-x: clamp(16px, 10.4167vw, 200px); /* 200 */
+  --page-pad-y: clamp(24px, 2.0833vw, 40px); /* 40 */
+  --gap-section: clamp(24px, 2.5vw, 48px); /* 48 */
+  --card-pad: clamp(16px, 1.25vw, 24px); /* 24 */
+  --card-gap: clamp(6px, 0.5208vw, 10px); /* 10 */
+  --radius: clamp(14px, 1.25vw, 24px); /* 24 */
+  --content-max: 1520px;
+
+  /* Nav bar: 64 tall, tabs 52 tall, tab edges 50 wide */
+  --bar-h: clamp(48px, 3.3333vw, 64px);
+  --bar-pad-x: clamp(12px, 2.0833vw, 40px); /* 40 */
+  --tab-h: calc(var(--bar-h) * 52 / 64);
+  --tab-edge-w: calc(var(--tab-h) * 50 / 52);
+
+  --footer-h: clamp(96px, 10.4167vw, 200px); /* 200 */
+  --footer-pad-x: clamp(16px, 6.25vw, 120px); /* 120 */
+}
+
+/* Phones (not in the Figma yet): give the cards more of the screen */
+@media (max-width: 760px) {
+  :root {
+    --page-pad-x: 14px;
+  }
+}

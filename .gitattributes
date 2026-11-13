@@ -1,0 +1,3 @@
+# Store text files with LF line endings in the repo (Windows checkouts still get CRLF),
+# so Google Docs exports from different machines don't show up as whole-file diffs.
+* text=auto

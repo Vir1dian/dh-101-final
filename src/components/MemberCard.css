@@ -1,0 +1,131 @@
+.members {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-section);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the grid is a little narrower than the cards above it (1314 of 1520 in Figma) */
+.page > .members {
+  width: 86.45%;
+}
+
+.members > li {
+  display: flex;
+}
+
+@media (max-width: 1100px) {
+  .members {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page > .members {
+    width: 100%;
+    max-width: 657px;
+  }
+}
+
+.member {
+  position: relative;
+  isolation: isolate;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--card-pad);
+  overflow: hidden;
+  padding: var(--card-pad);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.member__watermark {
+  top: clamp(24px, 4.1146vw, 79px);
+  left: 12.6%;
+  width: 82.6%;
+  font-size: var(--fs-watermark-small);
+}
+
+.member__top {
+  display: flex;
+  align-items: center;
+  gap: var(--card-pad);
+}
+
+.member__portrait {
+  flex: none;
+  width: clamp(96px, 12.5vw, 240px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--ink-deep);
+}
+
+.member__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.member__info,
+.member__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--rule);
+}
+
+.field dt {
+  font-size: var(--fs-label);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.field dd {
+  font-size: var(--fs-field);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.field--name dd {
+  text-transform: uppercase;
+}
+
+.field--small dd {
+  font-size: var(--fs-body);
+}
+
+.field__placeholder {
+  opacity: 0.45;
+}
+
+.field__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 480px) {
+  .member__top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .member__portrait {
+    width: 60%;
+  }
+}

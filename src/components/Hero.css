@@ -1,0 +1,124 @@
+.hero {
+  display: flex;
+  height: 100vh;
+  height: 100svh;
+  min-height: 520px;
+  padding: clamp(12px, 2.0833vw, 40px);
+  background: var(--ink);
+}
+
+.hero__card {
+  position: relative;
+  isolation: isolate;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 0 24px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* background photos, darkened so the text reads */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+}
+
+.hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+}
+
+.hero__panel {
+  min-width: 0;
+  height: 100%;
+}
+
+.hero__panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(28px, 8.125vw, 156px) clamp(10px, 1.5625vw, 30px) 0;
+}
+
+/* underlined text blocks */
+.hero__title,
+.hero__kicker,
+.hero__description {
+  padding: clamp(4px, 0.5208vw, 10px);
+  border-bottom: clamp(2px, 0.2083vw, 4px) solid var(--paper);
+  color: var(--paper);
+  line-height: 1.2;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hero__kicker {
+  margin-top: clamp(10px, 1.9792vw, 38px);
+  font-size: var(--fs-display);
+  font-weight: 700;
+}
+
+.hero__description {
+  margin-top: clamp(14px, 4.0625vw, 78px);
+  font-size: var(--fs-display);
+}
+
+.hero__explore {
+  margin-top: clamp(24px, 7.7604vw, 149px);
+  margin-left: clamp(4px, 0.5208vw, 10px);
+  padding: clamp(10px, 1.25vw, 24px) clamp(28px, 5vw, 96px) clamp(10px, 1.25vw, 24px)
+    clamp(14px, 1.6667vw, 32px);
+  border: clamp(2px, 0.2083vw, 4px) solid var(--paper);
+  background: transparent;
+  color: var(--paper);
+  font: inherit;
+  font-size: var(--fs-display);
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.hero__explore:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.hero__caption {
+  max-width: min(818px, 60%);
+  margin: auto clamp(12px, 1.9792vw, 38px) clamp(16px, 4.2188vw, 81px) auto;
+  padding-top: 16px;
+  color: var(--paper-muted);
+  font-size: var(--fs-hero-caption);
+  line-height: 1.2;
+  text-align: right;
+}
+
+.hero__credits {
+  display: block;
+  margin-top: 0.4em;
+  font-size: max(0.875rem, 0.45em);
+}
+
+@media (max-width: 760px) {
+  .hero__caption {
+    max-width: none;
+  }
+}

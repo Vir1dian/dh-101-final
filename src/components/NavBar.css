@@ -1,0 +1,118 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 2px solid var(--paper);
+  background: var(--ink);
+}
+
+.navbar__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+  min-height: var(--bar-h);
+  padding-inline: var(--bar-pad-x);
+}
+
+.navbar__title {
+  padding: 0 clamp(6px, 0.7813vw, 15px);
+  color: var(--paper);
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.navbar__tabs {
+  display: flex;
+  align-items: flex-end;
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar__tabs > li {
+  position: relative;
+  display: flex;
+}
+
+/* neighbouring tabs share their slanted edges */
+.navbar__tabs > li + li {
+  margin-left: calc(-1 * var(--tab-edge-w));
+}
+
+.tab {
+  display: flex;
+  height: var(--tab-h);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.tab__edge {
+  flex: none;
+  width: var(--tab-edge-w);
+  height: 100%;
+  margin-right: -1px;
+}
+
+.tab__edge--end {
+  margin-right: 0;
+  transform: scaleX(-1);
+}
+
+.tab__label {
+  display: flex;
+  align-items: center;
+  margin-right: -1px;
+  border-top: 2px solid var(--paper);
+  background: var(--ink);
+  font-size: var(--fs-tab);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tab--active .tab__label {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.tab:hover .tab__label {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* lift the focused tab above its neighbours so the whole focus ring shows */
+.navbar__tabs > li:focus-within {
+  z-index: 10 !important;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 760px) {
+  .navbar__bar {
+    padding-top: 6px;
+  }
+
+  .navbar__title {
+    font-size: 1.5rem;
+  }
+
+  /* tabs get their own row and scroll sideways if they don't fit */
+  .navbar__tabs {
+    width: 100%;
+    margin-top: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}

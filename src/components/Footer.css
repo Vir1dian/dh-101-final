@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  align-items: center;
+  min-height: var(--footer-h);
+  padding: 10px var(--footer-pad-x);
+  border-top: 2px solid var(--paper);
+  background: var(--ink-deep);
+  color: var(--paper);
+  font-size: var(--fs-footer);
+  line-height: 1.2;
+}

@@ -1,0 +1,236 @@
+.card {
+  position: relative;
+  isolation: isolate; /* keeps the watermark behind the text but above the paper */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-pad);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.card--sage {
+  background: var(--sage);
+}
+
+.card--sky {
+  background: var(--sky);
+}
+
+.card__watermark {
+  top: clamp(10px, 1.3542vw, 26px);
+  right: 0;
+}
+
+.card__decoration {
+  position: absolute;
+  z-index: -1;
+  top: 15px;
+  right: 38px;
+  width: clamp(110px, 15.524vw, 298px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.card__title {
+  margin-bottom: var(--card-gap);
+  padding-bottom: var(--card-gap);
+  border-bottom: 4px solid var(--ink);
+  font-size: var(--fs-card-title);
+  font-weight: 400;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* ---------- Text inside a card (rendered from Markdown) ---------- */
+
+.card__body {
+  min-width: 0;
+}
+
+/* a blank line between paragraphs, as in the Figma paragraph template */
+.card__body > * + * {
+  margin-top: calc(var(--lh-body) * 1em);
+}
+
+.card__body :is(h3, h4) {
+  font-size: var(--fs-question);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.card__body > :is(h3, h4) + * {
+  margin-top: 0.35em;
+}
+
+.card__body :is(ul, ol) {
+  padding-left: 1.25em;
+}
+
+.card__body li + li {
+  margin-top: 0.35em;
+}
+
+.card__body li > p + p {
+  margin-top: 0.5em;
+}
+
+.card__body blockquote {
+  padding-left: 1em;
+  border-left: 4px solid var(--rule);
+}
+
+.card__body hr {
+  border: 0;
+  border-top: 2px solid var(--rule);
+}
+
+.card__body img {
+  height: auto;
+}
+
+.card__body code {
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  background: rgba(44, 44, 49, 0.08);
+  font-size: 0.9em;
+}
+
+.card__body sup a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.card__body .table-scroll {
+  overflow-x: auto;
+}
+
+.card__body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.card__body :is(th, td) {
+  padding: 0.35em 0.6em;
+  border-bottom: 2px solid var(--rule);
+  text-align: left;
+}
+
+/* GitHub-flavoured footnote markup */
+.card__body .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.card__body .data-footnote-backref {
+  text-decoration: none;
+}
+
+/* ---------- Variant: ruled (thin line under each paragraph / item) ---------- */
+
+.card--ruled .card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.card--ruled .card__body > * + * {
+  margin-top: 0;
+}
+
+.card--ruled .card__body > :is(p, h3, h4, blockquote, figure, .table-scroll),
+.card--ruled .card__body > :is(ul, ol) > li {
+  padding-bottom: var(--card-gap);
+  border-bottom: 2px solid var(--rule);
+}
+
+.card--ruled .card__body > :is(ul, ol) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.card--ruled .card__body > :is(ul, ol) > li {
+  margin: 0;
+}
+
+/* ---------- Variant: numerals (i, ii, iii — research questions style) ---------- */
+
+.card--numerals .card__body > ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: item;
+}
+
+.card--numerals .card__body > ol > li {
+  counter-increment: item;
+  font-size: var(--fs-question);
+}
+
+.card--numerals .card__body > ol > li::before {
+  content: counter(item, lower-roman) '. ';
+  font-weight: 700;
+}
+
+.card--numerals .card__body > ol > li > p {
+  display: inline;
+}
+
+/* ---------- Variant: lead (bigger intro text — About style) ---------- */
+
+.card--lead .card__body {
+  font-size: var(--fs-card-title);
+}
+
+/* ---------- Variant: figure beside the text (Home intro style) ---------- */
+
+.card__split {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-section);
+}
+
+.card__split > .card__body {
+  flex: 1;
+}
+
+.card__figure {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--card-gap);
+  width: clamp(160px, 22.03vw, 423px);
+}
+
+.card__figure img {
+  width: 100%;
+  aspect-ratio: 423 / 754;
+  object-fit: cover;
+}
+
+.card__figure figcaption {
+  color: var(--rule);
+  font-size: max(1.1875rem, var(--fs-body)); /* stays "large text" for contrast */
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .card__split {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card__figure {
+    align-self: center;
+    width: min(100%, 300px);
+  }
+}

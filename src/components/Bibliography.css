@@ -1,0 +1,32 @@
+.bibliography {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  margin-top: 0.4em;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.bibliography > li {
+  margin: 0 !important;
+  padding-bottom: var(--card-gap);
+  border-bottom: 2px solid var(--rule);
+}
+
+/* hanging indent, as in a printed bibliography */
+.bibliography__citation p {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.bibliography__annotation {
+  margin-top: 0.35em;
+  padding-left: 2em;
+}
+
+.bibliography__link {
+  display: inline-block;
+  margin-top: 0.35em;
+  margin-left: 2em;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,19 @@
+.watermark {
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--watermark);
+  font-family: var(--font-serif);
+  font-size: var(--fs-watermark);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 0.8;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  filter: url(#watermark-texture);
+}
