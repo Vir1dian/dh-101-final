@@ -52,7 +52,14 @@ export default function PaperCard({
       {figure ? (
         <div className="card__split">
           <figure className="card__figure">
-            <img src={figure.src} alt={figure.alt} />
+            {figure.src ? (
+              <img src={figure.src} alt={figure.alt} />
+            ) : (
+              <div className="card__figure-placeholder">
+                <span>Image placeholder</span>
+                {figure.alt && <span className="card__figure-note">{figure.alt}</span>}
+              </div>
+            )}
             {figure.caption && <figcaption>{figure.caption}</figcaption>}
           </figure>
           {body}

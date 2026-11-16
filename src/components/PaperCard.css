@@ -214,6 +214,30 @@
   object-fit: cover;
 }
 
+/* shown while `figure.src` is empty */
+.card__figure-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  aspect-ratio: 423 / 754;
+  padding: 1em;
+  border: 2px dashed var(--rule);
+  border-radius: 8px;
+  color: var(--ink-muted);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card__figure-note {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 .card__figure figcaption {
   color: var(--rule);
   font-size: max(1.1875rem, var(--fs-body)); /* stays "large text" for contrast */

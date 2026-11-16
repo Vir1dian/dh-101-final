@@ -1,10 +1,32 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { HeroConfig } from '../content/types'
 import './Hero.css'
 
-/** Full-screen opener on the Home page (Figma "Hero"). */
+const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/** Full-screen opener on the Home page (Figma "Hero"), with an optional looping background clip. */
 export default function Hero({ hero }: { hero: HeroConfig }) {
   const ref = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  // Paused by the visitor's button press, or from the start if their system asks
+  // for less motion. Separately, the clip pauses itself while scrolled out of view.
+  const [paused, setPaused] = useState(reducedMotion)
+
+  useEffect(() => {
+    const video = videoRef.current
+    const header = ref.current
+    if (!video || !header) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !paused) {
+        // Browsers can refuse to autoplay (e.g. iOS Low Power Mode): show the play button instead.
+        video.play().catch(() => setPaused(true))
+      } else {
+        video.pause()
+      }
+    })
+    observer.observe(header)
+    return () => observer.disconnect()
+  }, [paused])
 
   // "Explore" scrolls past the hero to the nav bar + content (the Figma prototype's
   // scroll-to), then moves keyboard focus there too.
@@ -15,17 +37,27 @@ export default function Hero({ hero }: { hero: HeroConfig }) {
     document.getElementById('main')?.focus({ preventScroll: true })
   }
 
-  const credits = hero.media.map((m) => m.credit).filter(Boolean)
+  const video = hero.video
 
   return (
     <header className="hero" ref={ref}>
       <div className="hero__card">
         <div className="hero__media">
-          {hero.media.map((m) => (
-            <div key={m.src} className="hero__panel" style={{ flexBasis: `${m.width}%` }}>
-              <img src={m.src} alt={m.alt} style={{ objectPosition: m.position ?? 'center' }} />
-            </div>
-          ))}
+          {video && (
+            // Decorative: what the clip shows belongs in the caption.
+            <video
+              ref={videoRef}
+              className="hero__video"
+              src={video.src}
+              poster={video.poster}
+              muted
+              loop
+              playsInline
+              preload={paused ? 'metadata' : 'auto'}
+              aria-hidden="true"
+              tabIndex={-1}
+            />
+          )}
         </div>
 
         <div className="hero__content">
@@ -37,11 +69,33 @@ export default function Hero({ hero }: { hero: HeroConfig }) {
           </button>
         </div>
 
-        {(hero.caption || credits.length > 0) && (
-          <p className="hero__caption">
-            {hero.caption}
-            {credits.length > 0 && <span className="hero__credits">Photos: {credits.join('; ')}</span>}
-          </p>
+        {(hero.caption || video) && (
+          <div className="hero__footer">
+            {(hero.caption || video?.credit) && (
+              <p className="hero__caption">
+                {hero.caption}
+                {video?.credit && <span className="hero__credit">{video.credit}</span>}
+              </p>
+            )}
+            {video && (
+              // Anything that moves on its own for more than 5 seconds needs a way to stop it (WCAG 2.2.2).
+              <button
+                type="button"
+                className="hero__toggle"
+                onClick={() => setPaused((p) => !p)}
+                aria-label={paused ? 'Play background video' : 'Pause background video'}
+                title={paused ? 'Play background video' : 'Pause background video'}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  {paused ? (
+                    <path d="M7 4.5v15l12.5-7.5z" fill="currentColor" />
+                  ) : (
+                    <path d="M6.5 4.5h4v15h-4zm7 0h4v15h-4z" fill="currentColor" />
+                  )}
+                </svg>
+              </button>
+            )}
+          </div>
         )}
       </div>
     </header>

@@ -21,7 +21,7 @@ npm run preview  # serve the production build
 src/content/            ← everything the team edits
   pages/*.md            page text, exported from Google Docs
   analysis/*.md         one file per Analysis chapter
-  pages.ts              page settings: card colours, images, hero text, Google Doc links
+  pages.ts              page settings: card colours, images, hero text + clip, Google Doc links
   analysis.ts           chapter list and order
   team.ts               member cards on the About page
   visualizations.ts     every chart / map / embed
@@ -62,6 +62,23 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 - **Bibliography entry:** add to `src/content/bibliography.ts`. Entries are sorted alphabetically; use `*asterisks*` for italic titles.
 - **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order.
 
+## Hero background clip
+
+The Home hero can play a looping clip behind the title, darkened so the text stays readable.
+
+1. Put the clip and a still frame from it in `src/assets/home/` (for example `hero-clip.mp4` and `hero-poster.jpg`).
+2. In `src/content/pages.ts`, uncomment the two `import` lines and the `video:` line, and fill in the credit.
+3. Use `caption` to say what the clip shows; the video itself is hidden from screen readers.
+
+Keep the file small, since every visit to the Home page loads it: MP4, no audio, 5–15 seconds that loop cleanly, 1280×720 or 1920×1080, ideally a few MB. With [ffmpeg](https://ffmpeg.org):
+
+```bash
+ffmpeg -i original.mov -an -vf scale=1920:-2 -c:v libx264 -crf 28 -preset slow -movflags +faststart hero-clip.mp4
+ffmpeg -i hero-clip.mp4 -frames:v 1 hero-poster.jpg
+```
+
+The clip pauses itself while scrolled out of view. It has a pause button, and it starts paused for visitors whose system is set to reduce motion (the poster shows instead). Without a clip, the hero shows its plain dark background.
+
 ## Publishing
 
 Every push to `main` builds and deploys the site automatically (`.github/workflows/deploy.yml`).
@@ -70,5 +87,7 @@ One-time setup: in the GitHub repo, go to **Settings → Pages** and set **Sourc
 
 Notes:
 
+- Why not "Deploy from a branch"? That option publishes the repo's files exactly as they are, and browsers can't run our TypeScript/React source until it's built. The workflow runs the build on every push, including edits made on github.com.
+- The workflow installs with `npm install` rather than `npm ci`: npm on Windows sometimes drops other platforms' packages from `package-lock.json`, and `npm ci` then refuses to run.
 - The site lives under `/dh-101-final/`. That prefix is set in `vite.config.ts`. Change it if the repo is renamed or the site moves to a custom domain.
 - GitHub Pages can't route single-page apps by itself, so the build copies `index.html` to `404.html`. Deep links like `/dh-101-final/about` still load the right page.

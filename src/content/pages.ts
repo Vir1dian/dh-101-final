@@ -16,15 +16,18 @@ import analysisBody from './pages/analysis.md?raw'
 // src/assets/home/, then uncomment this line and the `decoration` line below.
 // import magnifier from '../assets/home/magnifier.png'
 
+// Hero background clip: put the files in src/assets/home/, then uncomment these
+// two lines and the `video` line below. See the README for size tips.
+// import heroClip from '../assets/home/hero-clip.mp4'
+// import heroPoster from '../assets/home/hero-poster.jpg'
+
 export const hero: HeroConfig = {
   title: 'Immigration Archive',
   kicker: 'UCLA DH 101',
   description: 'Short description of our project here',
   cta: 'Explore',
   caption: 'looping gif and description here',
-  media: [
-    //
-  ],
+  // video: { src: heroClip, poster: heroPoster, credit: 'Footage: …' },
 }
 
 export const homePage: PageConfig = {

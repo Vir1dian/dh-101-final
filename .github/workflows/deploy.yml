@@ -32,7 +32,9 @@ jobs:
           node-version: lts/*
           cache: npm
       - name: Install dependencies
-        run: npm ci
+        # Not `npm ci`: npm on Windows sometimes drops other platforms' optional
+        # packages from package-lock.json, and `npm ci` then refuses to install.
+        run: npm install --no-audit --no-fund
       - name: Build
         run: npm run build
       - name: Set up Pages

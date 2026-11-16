@@ -14,8 +14,11 @@ export type CardOptions = {
   numerals?: boolean
   /** Larger body text (About intro style). */
   lead?: boolean
-  /** Image beside the text with a caption under it (Home intro style). */
-  figure?: { src: string; alt: string; caption?: string }
+  /**
+   * Image beside the text with a caption under it (Home intro style). Leave
+   * `src` empty to show a placeholder box; once there's an image, `alt` is required.
+   */
+  figure?: { src: string; alt: string; caption?: string } | { src?: undefined; alt?: string; caption?: string }
   /** Faint decorative image in the top-right corner. */
   decoration?: { src: string }
 }
@@ -46,9 +49,17 @@ export type HeroConfig = {
   kicker: string
   description: string
   cta: string
+  /** Line in the bottom-right corner, e.g. what the background clip shows. */
   caption?: string
-  /** Background images, left to right. `width` is the % of the hero each one covers. */
-  media: { src: string; alt: string; width: number; position?: string; credit?: string }[]
+  /** Looping background clip. Without one, the hero shows its plain darkened background. */
+  video?: {
+    /** The clip: import it at the top of pages.ts (MP4 plays in every browser). */
+    src: string
+    /** Still frame shown while the clip loads, and instead of it for visitors who turn off motion. */
+    poster?: string
+    /** Who made the footage; shown after the caption. */
+    credit?: string
+  }
 }
 
 export type Member = {
