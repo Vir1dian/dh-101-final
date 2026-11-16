@@ -1,9 +1,16 @@
+/*
+ * The hero fills the window. Its spacing and text use --hero-u, which equals 1vw
+ * at 16:9 (so 1920×1080 matches Figma exactly) but follows the window height in
+ * wider, shorter windows: the gaps and text shrink together instead of pushing
+ * Explore and the caption off the bottom. If the window is shorter still, the
+ * hero grows past the window rather than cutting anything off.
+ */
 .hero {
+  --hero-u: min(1vw, 1.7778svh);
+  --hero-fs-display: clamp(1.5rem, calc(var(--hero-u) * 2.5), 3rem); /* 48 */
   display: flex;
-  height: 100vh;
-  height: 100svh;
-  min-height: 520px;
-  padding: clamp(12px, 2.0833vw, 40px);
+  min-height: 100svh;
+  padding: clamp(12px, calc(var(--hero-u) * 2.0833), 40px);
   background: var(--ink);
 }
 
@@ -43,46 +50,46 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(28px, 8.125vw, 156px) clamp(10px, 1.5625vw, 30px) 0;
+  padding: clamp(16px, calc(var(--hero-u) * 8.125), 156px) clamp(10px, calc(var(--hero-u) * 1.5625), 30px) 0;
 }
 
 /* underlined text blocks */
 .hero__title,
 .hero__kicker,
 .hero__description {
-  padding: clamp(4px, 0.5208vw, 10px);
-  border-bottom: clamp(2px, 0.2083vw, 4px) solid var(--paper);
+  padding: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
+  border-bottom: clamp(2px, calc(var(--hero-u) * 0.2083), 4px) solid var(--paper);
   color: var(--paper);
   line-height: 1.2;
 }
 
 .hero__title {
-  font-size: var(--fs-hero);
+  font-size: clamp(2.25rem, calc(var(--hero-u) * 5), 6rem); /* 96 */
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .hero__kicker {
-  margin-top: clamp(10px, 1.9792vw, 38px);
-  font-size: var(--fs-display);
+  margin-top: clamp(6px, calc(var(--hero-u) * 1.9792), 38px);
+  font-size: var(--hero-fs-display);
   font-weight: 700;
 }
 
 .hero__description {
-  margin-top: clamp(14px, 4.0625vw, 78px);
-  font-size: var(--fs-display);
+  margin-top: clamp(8px, calc(var(--hero-u) * 4.0625), 78px);
+  font-size: var(--hero-fs-display);
 }
 
 .hero__explore {
-  margin-top: clamp(24px, 7.7604vw, 149px);
-  margin-left: clamp(4px, 0.5208vw, 10px);
-  padding: clamp(10px, 1.25vw, 24px) clamp(28px, 5vw, 96px) clamp(10px, 1.25vw, 24px)
-    clamp(14px, 1.6667vw, 32px);
-  border: clamp(2px, 0.2083vw, 4px) solid var(--paper);
+  margin-top: clamp(12px, calc(var(--hero-u) * 7.7604), 149px);
+  margin-left: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
+  padding: clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(28px, calc(var(--hero-u) * 5), 96px)
+    clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(14px, calc(var(--hero-u) * 1.6667), 32px);
+  border: clamp(2px, calc(var(--hero-u) * 0.2083), 4px) solid var(--paper);
   background: transparent;
   color: var(--paper);
   font: inherit;
-  font-size: var(--fs-display);
+  font-size: var(--hero-fs-display);
   line-height: 1.2;
   cursor: pointer;
   transition:
@@ -100,16 +107,16 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: clamp(10px, 1.0417vw, 20px);
-  margin: auto clamp(12px, 1.9792vw, 38px) clamp(16px, 4.2188vw, 81px) auto;
-  padding-top: 16px;
-  padding-left: clamp(10px, 1.5625vw, 30px);
+  gap: clamp(10px, calc(var(--hero-u) * 1.0417), 20px);
+  margin: auto clamp(12px, calc(var(--hero-u) * 1.9792), 38px) clamp(12px, calc(var(--hero-u) * 3.125), 60px) auto;
+  padding-top: clamp(8px, calc(var(--hero-u) * 0.8333), 16px);
+  padding-left: clamp(10px, calc(var(--hero-u) * 1.5625), 30px);
 }
 
 .hero__caption {
   max-width: min(818px, 60vw);
   color: var(--paper-muted);
-  font-size: var(--fs-hero-caption);
+  font-size: clamp(1rem, calc(var(--hero-u) * 2.0833), 2.5rem); /* 40 */
   line-height: 1.2;
   text-align: right;
 }
@@ -124,7 +131,7 @@
   flex: none;
   display: grid;
   place-items: center;
-  width: clamp(36px, 2.5vw, 48px);
+  width: clamp(32px, calc(var(--hero-u) * 2.5), 48px);
   aspect-ratio: 1;
   padding: 0;
   border: 2px solid var(--paper-muted);

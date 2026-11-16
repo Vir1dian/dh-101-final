@@ -43,7 +43,7 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 
 **How a Doc becomes cards:** each top-level heading in the Doc (Heading 1 or Heading 2, whichever the Doc uses for its sections) starts a new paper card, and the heading becomes the card title. A single title heading at the very top of the Doc is skipped. Footnotes are collected in a "Notes" card at the end.
 
-**Styling a card:** in `pages.ts`, add the heading as a slug under `cards`: "Research Questions" becomes `'research-questions'`. The options are `tone` (`'paper'`, `'sage'`, `'sky'`), `ruled`, `numerals`, `lead`, `figure` and `decoration` (see `src/content/types.ts`). If a heading gets renamed in the Doc, the browser console says which card setting no longer matches anything.
+**Styling a card:** in `pages.ts`, add the heading as a slug under `cards`: "Research Questions" becomes `'research-questions'`. The options are `tone` (`'paper'`, `'sage'`, `'sky'`), `ruled`, `numerals`, `lead`, `figure` and `decoration`, plus `layout: 'id-cards'`, which turns each item of the section's list into an ID card like the Home research questions (see `src/content/types.ts`). If a heading gets renamed in the Doc, the browser console says which card setting no longer matches anything.
 
 ## Charts, maps and other embeds
 

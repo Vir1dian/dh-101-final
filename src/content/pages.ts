@@ -12,10 +12,6 @@ import dataBody from './pages/data.md?raw'
 import sourcesBody from './pages/sources.md?raw'
 import analysisBody from './pages/analysis.md?raw'
 
-// TODO: export the magnifying-glass image ("image 20") from Figma as PNG into
-// src/assets/home/, then uncomment this line and the `decoration` line below.
-// import magnifier from '../assets/home/magnifier.png'
-
 // Hero background clip: put the files in src/assets/home/, then uncomment these
 // two lines and the `video` line below. See the README for size tips.
 // import heroClip from '../assets/home/hero-clip.mp4'
@@ -44,12 +40,8 @@ export const homePage: PageConfig = {
         caption: 'Placeholder image description',
       },
     },
-    'research-questions': {
-      tone: 'sky',
-      ruled: true,
-      numerals: true,
-      // decoration: { src: magnifier },
-    },
+    // each numbered question becomes an ID card: ID.RQ.1, ID.RQ.2…
+    'research-questions': { layout: 'id-cards', idLabel: 'ID.RQ.' },
   },
 }
 

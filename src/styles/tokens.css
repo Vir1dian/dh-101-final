@@ -16,7 +16,10 @@
   --rule: #71717d; /* thin separators, captions on paper */
   --ink-muted: #55555f; /* small secondary text on paper (darker than --rule for contrast) */
   --sage: #d7e4c9; /* "What is…" card */
-  --sky: #c9d2e4; /* "Research questions" card */
+  --sky: #c9d2e4; /* cool card tone */
+  --id-card: #dfe3e3; /* research-question ID cards */
+  --id-card-edge: #c6c6d9; /* their dashed top/bottom edges */
+  --id-slate: #6b6b8b; /* ID label strip + dashed frame */
   --watermark: rgba(0, 38, 143, 0.05);
   --hero-overlay: rgba(0, 0, 0, 0.6);
 

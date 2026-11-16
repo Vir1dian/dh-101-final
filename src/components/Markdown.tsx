@@ -1,11 +1,12 @@
-import type { RootContent } from 'hast'
+import type { Element, RootContent } from 'hast'
 import { toJsxRuntime, type Components } from 'hast-util-to-jsx-runtime'
 import { Fragment, useEffect, type ComponentProps, type ReactNode } from 'react'
 import { jsx, jsxs } from 'react/jsx-runtime'
 import { Link } from 'react-router'
 import type { CardOptions } from '../content/types'
-import { toSections, toTree } from '../lib/markdown'
+import { toSections, toTree, type Section } from '../lib/markdown'
 import { withBase } from '../lib/site-url'
+import IdCardSection from './IdCardSection'
 import PaperCard from './PaperCard'
 import VizEmbed from './VizEmbed'
 
@@ -29,6 +30,28 @@ const components: Partial<Components> = {
 
 function MarkdownNodes({ nodes }: { nodes: RootContent[] }) {
   return toJsxRuntime({ type: 'root', children: nodes }, { Fragment, jsx, jsxs, components, passKeys: true })
+}
+
+const isElement = (node: RootContent, ...tags: string[]): node is Element =>
+  node.type === 'element' && tags.includes(node.tagName)
+
+/** One section as ID cards: each item of its first list becomes a card. */
+function IdCards({ section, options }: { section: Section; options: CardOptions }) {
+  const list = section.nodes.find((node) => isElement(node, 'ol', 'ul')) as Element | undefined
+  const items = (list?.children ?? []).filter((node) => isElement(node, 'li')) as Element[]
+  const rest = section.nodes.filter((node) => node !== list)
+  const hasIntro = rest.some((node) => !(node.type === 'text' && !node.value.trim()))
+  return (
+    <IdCardSection
+      id={section.id}
+      title={section.title}
+      label={options.idLabel ?? ''}
+      intro={hasIntro ? <MarkdownNodes nodes={rest} /> : undefined}
+      items={items.map((li, index) => (
+        <MarkdownNodes key={index} nodes={li.children} />
+      ))}
+    />
+  )
 }
 
 /** Render a Markdown string as-is (no cards), e.g. a citation. */
@@ -65,9 +88,13 @@ export function MarkdownCards({ source, cards = {}, after = {} }: CardsProps) {
     <>
       {sections.map((section) => (
         <Fragment key={section.id}>
-          <PaperCard id={section.id} title={section.title} titleId={section.titleId} {...cards[section.id]}>
-            <MarkdownNodes nodes={section.nodes} />
-          </PaperCard>
+          {cards[section.id]?.layout === 'id-cards' ? (
+            <IdCards section={section} options={cards[section.id]} />
+          ) : (
+            <PaperCard id={section.id} title={section.title} titleId={section.titleId} {...cards[section.id]}>
+              <MarkdownNodes nodes={section.nodes} />
+            </PaperCard>
+          )}
           {after[section.id]}
         </Fragment>
       ))}

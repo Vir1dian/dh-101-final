@@ -6,6 +6,13 @@ export type Tone = 'paper' | 'sage' | 'sky'
 
 /** Optional styling for one card. Cards come from the top-level headings in a page's Markdown. */
 export type CardOptions = {
+  /**
+   * 'card' (default): a paper card. 'id-cards': the heading sits on the dark page and
+   * each item of the section's list becomes its own ID card (Home research questions).
+   */
+  layout?: 'card' | 'id-cards'
+  /** For 'id-cards': text before each card's number, e.g. 'ID.RQ.' → ID.RQ.1, ID.RQ.2… */
+  idLabel?: string
   /** Background colour. Default: 'paper'. */
   tone?: Tone
   /** Thin rule under every paragraph / list item (Home intro + research questions style). */

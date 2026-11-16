@@ -4,6 +4,7 @@
   z-index: 50;
   border-bottom: 2px solid var(--paper);
   background: var(--ink);
+  box-shadow: 0 2px 8px rgba(44, 44, 49, 0.25);
 }
 
 .navbar__bar {
