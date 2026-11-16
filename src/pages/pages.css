@@ -33,7 +33,7 @@
   border: clamp(2px, 0.1563vw, 3px) solid var(--paper);
   color: var(--paper);
   font-size: var(--fs-card-title);
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   text-decoration: none;
   transition:
     background-color 0.15s,

@@ -50,17 +50,23 @@ export const aboutPage: PageConfig = {
   sourceDoc: '',
   body: aboutBody,
   cards: {
-    'meet-the-team': { lead: true },
+    'meet-the-team': { tone: 'board', lead: true },
+    'project-methodology': { tone: 'open' },
   },
 }
 
-/** On the About page, the member cards go right after this card. */
-export const teamCardsAfter = 'meet-the-team'
+/** On the About page, the member cards go inside this card (the clipboard). */
+export const teamCardsIn = 'meet-the-team'
 
 export const dataPage: PageConfig = {
   title: 'Data',
   sourceDoc: '',
   body: dataBody,
+  // mixing the three paragraph styles; change freely
+  cards: {
+    'about-the-dataset': { tone: 'id' },
+    processing: { tone: 'open' },
+  },
 }
 
 export const sourcesPage: PageConfig = {

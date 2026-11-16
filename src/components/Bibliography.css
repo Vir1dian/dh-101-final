@@ -10,7 +10,7 @@
 .bibliography > li {
   margin: 0 !important;
   padding-bottom: var(--card-gap);
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--card-rule, var(--rule));
 }
 
 /* hanging indent, as in a printed bibliography */

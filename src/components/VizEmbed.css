@@ -9,7 +9,7 @@
   width: 100%;
   overflow: hidden;
   border-radius: calc(var(--radius) / 2);
-  background: rgba(44, 44, 49, 0.06);
+  background: color-mix(in srgb, currentColor 6%, transparent);
 }
 
 .viz__frame :is(iframe, img) {
@@ -33,9 +33,9 @@
   justify-content: center;
   gap: 0.4em;
   padding: 1em;
-  border: 2px dashed var(--rule);
+  border: 2px dashed var(--card-rule, var(--rule));
   border-radius: inherit;
-  color: var(--ink-muted, #55555f);
+  color: var(--card-muted, var(--ink-muted));
   text-align: center;
 }
 
@@ -52,12 +52,12 @@
 .viz__credit {
   display: block;
   margin-top: 0.25em;
-  color: var(--ink-muted, #55555f);
+  color: var(--card-muted, var(--ink-muted));
   font-size: 0.85em;
 }
 
 .viz__description summary {
-  color: var(--ink-muted, #55555f);
+  color: var(--card-muted, var(--ink-muted));
   font-size: var(--fs-label);
   letter-spacing: 0.06em;
   text-transform: uppercase;

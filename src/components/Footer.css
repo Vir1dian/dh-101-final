@@ -7,5 +7,5 @@
   background: var(--ink-deep);
   color: var(--paper);
   font-size: var(--fs-footer);
-  line-height: 1.2;
+  line-height: var(--lh-normal);
 }

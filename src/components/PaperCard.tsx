@@ -10,9 +10,14 @@ type Props = CardOptions & {
   titleId?: string
   className?: string
   children?: ReactNode
+  /** Rendered inside the card after the text, e.g. the About page's member cards. */
+  extra?: ReactNode
 }
 
-/** The aged-paper card from the Figma "Paragraph Template", with its variants. */
+// Templates 2 ('id') and 3 ('open') have no watermark in Figma.
+const NO_WATERMARK = new Set(['id', 'open'])
+
+/** A content card: the Figma "Paragraph Template" 1–3 styles and the About board, with their variants. */
 export default function PaperCard({
   id,
   title,
@@ -25,6 +30,7 @@ export default function PaperCard({
   decoration,
   className,
   children,
+  extra,
 }: Props) {
   const headingId = titleId ?? (id ? `${id}-title` : undefined)
   const classes = [
@@ -42,7 +48,7 @@ export default function PaperCard({
 
   return (
     <section id={id} className={classes} aria-labelledby={title ? headingId : undefined}>
-      <Watermark className="card__watermark" />
+      {!NO_WATERMARK.has(tone) && <Watermark className="card__watermark" />}
       {decoration && <img className="card__decoration" src={decoration.src} alt="" />}
       {title && (
         <h2 id={headingId} className="card__title">
@@ -67,6 +73,7 @@ export default function PaperCard({
       ) : (
         body
       )}
+      {extra && <div className="card__extra">{extra}</div>}
     </section>
   )
 }

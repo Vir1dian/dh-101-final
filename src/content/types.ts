@@ -2,7 +2,12 @@
 // (say, a visualization's caption or description), `npm run build` fails and
 // tells you which one, so it gets fixed before it goes live.
 
-export type Tone = 'paper' | 'sage' | 'sky'
+/**
+ * Card styles. 'paper', 'sage', 'sky': Figma Paragraph Template 1 in different colours.
+ * 'id': Paragraph Template 2 (framed ID page). 'open': Paragraph Template 3 (rules above and
+ * below, no card). 'board': the About page's dark clipboard panel.
+ */
+export type Tone = 'paper' | 'sage' | 'sky' | 'id' | 'open' | 'board'
 
 /** Optional styling for one card. Cards come from the top-level headings in a page's Markdown. */
 export type CardOptions = {

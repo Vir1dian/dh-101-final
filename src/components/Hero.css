@@ -60,7 +60,7 @@
   padding: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
   border-bottom: clamp(2px, calc(var(--hero-u) * 0.2083), 4px) solid var(--paper);
   color: var(--paper);
-  line-height: 1.2;
+  line-height: var(--lh-normal);
 }
 
 .hero__title {
@@ -70,18 +70,18 @@
 }
 
 .hero__kicker {
-  margin-top: clamp(6px, calc(var(--hero-u) * 1.9792), 38px);
+  margin-top: clamp(4px, calc(var(--hero-u) * 1.2344), 24px);
   font-size: var(--hero-fs-display);
   font-weight: 700;
 }
 
 .hero__description {
-  margin-top: clamp(8px, calc(var(--hero-u) * 4.0625), 78px);
+  margin-top: clamp(8px, calc(var(--hero-u) * 3.7135), 71px);
   font-size: var(--hero-fs-display);
 }
 
 .hero__explore {
-  margin-top: clamp(12px, calc(var(--hero-u) * 7.7604), 149px);
+  margin-top: clamp(12px, calc(var(--hero-u) * 7.4115), 142px);
   margin-left: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
   padding: clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(28px, calc(var(--hero-u) * 5), 96px)
     clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(14px, calc(var(--hero-u) * 1.6667), 32px);
@@ -90,7 +90,7 @@
   color: var(--paper);
   font: inherit;
   font-size: var(--hero-fs-display);
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   cursor: pointer;
   transition:
     background-color 0.15s,
@@ -109,7 +109,7 @@
   justify-content: flex-end;
   gap: clamp(10px, calc(var(--hero-u) * 1.0417), 20px);
   margin: auto clamp(12px, calc(var(--hero-u) * 1.9792), 38px) clamp(12px, calc(var(--hero-u) * 3.125), 60px) auto;
-  padding-top: clamp(8px, calc(var(--hero-u) * 0.8333), 16px);
+  padding-top: clamp(4px, calc(var(--hero-u) * 0.4167), 8px);
   padding-left: clamp(10px, calc(var(--hero-u) * 1.5625), 30px);
 }
 
@@ -117,7 +117,7 @@
   max-width: min(818px, 60vw);
   color: var(--paper-muted);
   font-size: clamp(1rem, calc(var(--hero-u) * 2.0833), 2.5rem); /* 40 */
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   text-align: right;
 }
 

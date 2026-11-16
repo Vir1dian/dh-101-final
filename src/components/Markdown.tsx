@@ -65,17 +65,20 @@ type CardsProps = {
   cards?: Record<string, CardOptions>
   /** Extra elements to place right after a given card, keyed by heading slug. */
   after?: Record<string, ReactNode>
+  /** Extra elements to place inside a given card, after its text, keyed by heading slug. */
+  inside?: Record<string, ReactNode>
 }
 
 /** Render a Markdown page as a stack of paper cards, one per top-level heading. */
-export function MarkdownCards({ source, cards = {}, after = {} }: CardsProps) {
+export function MarkdownCards({ source, cards = {}, after = {}, inside = {} }: CardsProps) {
   const sections = toSections(source)
   const ids = new Set(sections.map((s) => s.id))
-  const orphans = Object.keys(after).filter((key) => !ids.has(key))
+  const extras = { ...inside, ...after }
+  const orphans = Object.keys(extras).filter((key) => !ids.has(key))
 
   useEffect(() => {
     if (!import.meta.env.DEV) return
-    const unknown = [...Object.keys(cards), ...Object.keys(after)].filter((key) => !ids.has(key))
+    const unknown = [...Object.keys(cards), ...Object.keys(extras)].filter((key) => !ids.has(key))
     if (unknown.length > 0) {
       console.warn(
         `[content] No card heading matches: ${unknown.join(', ')}. ` +
@@ -91,7 +94,13 @@ export function MarkdownCards({ source, cards = {}, after = {} }: CardsProps) {
           {cards[section.id]?.layout === 'id-cards' ? (
             <IdCards section={section} options={cards[section.id]} />
           ) : (
-            <PaperCard id={section.id} title={section.title} titleId={section.titleId} {...cards[section.id]}>
+            <PaperCard
+              id={section.id}
+              title={section.title}
+              titleId={section.titleId}
+              extra={inside[section.id]}
+              {...cards[section.id]}
+            >
               <MarkdownNodes nodes={section.nodes} />
             </PaperCard>
           )}
@@ -100,7 +109,7 @@ export function MarkdownCards({ source, cards = {}, after = {} }: CardsProps) {
       ))}
       {/* anything meant to follow a heading that no longer exists still shows up, at the end */}
       {orphans.map((key) => (
-        <Fragment key={`after-${key}`}>{after[key]}</Fragment>
+        <Fragment key={`extra-${key}`}>{extras[key]}</Fragment>
       ))}
     </>
   )

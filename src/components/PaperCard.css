@@ -1,4 +1,11 @@
 .card {
+  /* each tone below swaps these */
+  --card-bg: var(--paper);
+  --card-fg: var(--ink);
+  --card-rule-strong: var(--ink); /* line under the title */
+  --card-rule: var(--rule); /* thin lines between paragraphs */
+  --card-muted: var(--ink-muted); /* captions, credits, placeholders */
+
   position: relative;
   isolation: isolate; /* keeps the watermark behind the text but above the paper */
   overflow: hidden;
@@ -6,16 +13,77 @@
   flex-direction: column;
   padding: var(--card-pad);
   border-radius: var(--radius);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--card-bg);
+  color: var(--card-fg);
 }
 
+/* ---------- Tones ---------- */
+
+/* Paragraph Template 1 (default): aged paper */
+
 .card--sage {
-  background: var(--sage);
+  --card-bg: var(--sage);
 }
 
 .card--sky {
-  background: var(--sky);
+  --card-bg: var(--sky);
+}
+
+/* Paragraph Template 2: ID-card page, slate frame inset 10px, dashed dividers */
+.card--id {
+  --card-bg: var(--id-card);
+  --card-dash: repeating-linear-gradient(90deg, var(--id-card-edge) 0 8px, transparent 8px 16px);
+  padding: max(var(--card-pad), 20px);
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 0 10px var(--card-bg),
+    inset 0 0 0 14px var(--id-slate);
+}
+
+.card--id .card__title {
+  border-bottom: 0;
+  padding-bottom: calc(var(--card-gap) + 4px);
+  background: var(--card-dash) bottom / 100% 4px no-repeat;
+}
+
+.card--id .card__body hr {
+  height: 4px;
+  border: 0;
+  background: var(--card-dash);
+}
+
+/* Paragraph Template 3: no card, just thick paper rules above and below */
+.card--open {
+  --card-bg: transparent;
+  --card-fg: var(--paper);
+  --card-rule-strong: var(--paper);
+  --card-muted: var(--paper-muted);
+  padding-inline: 0;
+  border-block: 8px solid var(--paper);
+  border-radius: 0;
+}
+
+/* About "clipboard": a dark board that holds other cards */
+.card--board {
+  --card-bg: var(--board);
+  --card-fg: var(--paper);
+  --card-rule-strong: var(--paper);
+  --card-muted: var(--paper-muted);
+  padding-bottom: clamp(24px, 4.2188vw, 81px);
+  border-radius: 0;
+}
+
+.card--board .card__title {
+  text-align: center;
+}
+
+.card--board .card__watermark {
+  color: rgba(228, 213, 201, 0.05);
+}
+
+/* things placed inside a card after its text, e.g. the team's member cards */
+.card__extra {
+  margin-top: clamp(24px, 4.375vw, 84px);
 }
 
 .card__watermark {
@@ -36,10 +104,10 @@
 .card__title {
   margin-bottom: var(--card-gap);
   padding-bottom: var(--card-gap);
-  border-bottom: 4px solid var(--ink);
+  border-bottom: 4px solid var(--card-rule-strong);
   font-size: var(--fs-card-title);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   text-transform: uppercase;
 }
 
@@ -57,7 +125,7 @@
 .card__body :is(h3, h4) {
   font-size: var(--fs-question);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: var(--lh-normal);
 }
 
 .card__body > :is(h3, h4) + * {
@@ -78,12 +146,12 @@
 
 .card__body blockquote {
   padding-left: 1em;
-  border-left: 4px solid var(--rule);
+  border-left: 4px solid var(--card-rule);
 }
 
 .card__body hr {
   border: 0;
-  border-top: 2px solid var(--rule);
+  border-top: 2px solid var(--card-rule);
 }
 
 .card__body img {
@@ -93,7 +161,7 @@
 .card__body code {
   padding: 0.05em 0.3em;
   border-radius: 4px;
-  background: rgba(44, 44, 49, 0.08);
+  background: color-mix(in srgb, currentColor 10%, transparent);
   font-size: 0.9em;
 }
 
@@ -113,7 +181,7 @@
 
 .card__body :is(th, td) {
   padding: 0.35em 0.6em;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--card-rule);
   text-align: left;
 }
 
@@ -146,7 +214,7 @@
 .card--ruled .card__body > :is(p, h3, h4, blockquote, figure, .table-scroll),
 .card--ruled .card__body > :is(ul, ol) > li {
   padding-bottom: var(--card-gap);
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--card-rule);
 }
 
 .card--ruled .card__body > :is(ul, ol) {
@@ -224,9 +292,9 @@
   width: 100%;
   aspect-ratio: 423 / 754;
   padding: 1em;
-  border: 2px dashed var(--rule);
+  border: 2px dashed var(--card-rule);
   border-radius: 8px;
-  color: var(--ink-muted);
+  color: var(--card-muted);
   font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-align: center;
@@ -239,10 +307,10 @@
 }
 
 .card__figure figcaption {
-  color: var(--rule);
+  color: var(--card-rule);
   font-size: max(1.1875rem, var(--fs-body)); /* stays "large text" for contrast */
   font-weight: 700;
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   text-align: center;
   text-transform: uppercase;
 }

@@ -10,7 +10,7 @@
   border-bottom: 4px solid var(--paper);
   font-size: var(--fs-card-title);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: var(--lh-normal);
   text-align: center;
   text-transform: uppercase;
 }
@@ -49,7 +49,7 @@
   background: var(--id-slate);
   color: var(--id-card);
   font-size: max(1.5rem, var(--fs-card-title)); /* stays "large text" for contrast */
-  line-height: 1.2;
+  line-height: var(--lh-normal);
 }
 
 .id-card__body {

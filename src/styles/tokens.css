@@ -20,6 +20,7 @@
   --id-card: #dfe3e3; /* research-question ID cards */
   --id-card-edge: #c6c6d9; /* their dashed top/bottom edges */
   --id-slate: #6b6b8b; /* ID label strip + dashed frame */
+  --board: #393836; /* About page clipboard panel */
   --watermark: rgba(0, 38, 143, 0.05);
   --hero-overlay: rgba(0, 0, 0, 0.6);
 
@@ -39,7 +40,8 @@
   --fs-label: clamp(0.75rem, 0.8333vw, 1rem); /* 16 */
   --fs-watermark: clamp(2.5rem, 5vw, 6rem); /* 96 */
   --fs-watermark-small: clamp(1.75rem, 3.3333vw, 4rem); /* 64 */
-  --lh-body: 1.25;
+  --lh-normal: 1.347; /* Archivo Narrow's own "normal" line height, which Figma uses */
+  --lh-body: var(--lh-normal);
 
   /* Space + shape */
   --page-pad-x: clamp(16px, 10.4167vw, 200px); /* 200 */
