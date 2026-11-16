@@ -6,7 +6,7 @@ The design follows the Figma file *UCLA-Projects → DH101 - Project Website (V1
 
 ## Run it locally
 
-You need [Node.js](https://nodejs.org) 22.22 or newer (the 24 LTS is a good choice).
+[Node.js](https://nodejs.org) 22.22+ required
 
 ```bash
 npm install
@@ -79,15 +79,3 @@ ffmpeg -i hero-clip.mp4 -frames:v 1 hero-poster.jpg
 
 The clip pauses itself while scrolled out of view. It has a pause button, and it starts paused for visitors whose system is set to reduce motion (the poster shows instead). Without a clip, the hero shows its plain dark background.
 
-## Publishing
-
-Every push to `main` builds and deploys the site automatically (`.github/workflows/deploy.yml`).
-
-One-time setup: in the GitHub repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
-
-Notes:
-
-- Why not "Deploy from a branch"? That option publishes the repo's files exactly as they are, and browsers can't run our TypeScript/React source until it's built. The workflow runs the build on every push, including edits made on github.com.
-- The workflow installs with `npm install` rather than `npm ci`: npm on Windows sometimes drops other platforms' packages from `package-lock.json`, and `npm ci` then refuses to run.
-- The site lives under `/dh-101-final/`. That prefix is set in `vite.config.ts`. Change it if the repo is renamed or the site moves to a custom domain.
-- GitHub Pages can't route single-page apps by itself, so the build copies `index.html` to `404.html`. Deep links like `/dh-101-final/about` still load the right page.
