@@ -1,6 +1,7 @@
 // The Analysis section is split into chapters, one page each (the "V2: split up
 // the Analysis page" note in Figma). Each chapter's text is its own .md file.
 // To add a chapter: create the .md file, import it, and add an entry below.
+// Text comes from the team's "Analysis Page Draft" Google Doc.
 // The order here is the reading order (and the Previous / Next buttons).
 
 import type { Chapter } from './types'
@@ -15,9 +16,13 @@ export const chapters: Chapter[] = [
   {
     slug: 'introduction',
     title: 'Introduction',
-    summary: 'Topic, argument, scholarly context, and why it matters.',
+    summary: 'The project’s opening, the policy background behind the data, and a policy timeline.',
     sourceDoc: '',
     body: introduction,
+    cards: {
+      'background-of-immigration-policies-obama-vs-trump': { tone: 'open' },
+      'policy-timeline': { tone: 'id' },
+    },
   },
   {
     slug: 'admissions-by-state',
@@ -25,6 +30,10 @@ export const chapters: Chapter[] = [
     summary: 'How state-level refugee admissions shifted after 2017, and where they fell most.',
     sourceDoc: '',
     body: admissionsByState,
+    cards: {
+      'refugee-declines-mapped': { tone: 'open' },
+      'refugee-declines-by-state': { tone: 'id' },
+    },
   },
   {
     slug: 'political-leaning',
@@ -36,9 +45,13 @@ export const chapters: Chapter[] = [
   {
     slug: 'administrations-and-covid',
     title: 'Administrations & COVID-19',
-    summary: 'Admissions across administrations, and how the pandemic complicates the comparison.',
+    summary: 'Refugee and asylum admissions across administrations, and how the pandemic complicates the comparison.',
     sourceDoc: '',
     body: administrationsAndCovid,
+    cards: {
+      'refugees-and-asylees-by-administration': { tone: 'open' },
+      'affirmative-and-defensive-asylum': { tone: 'id' },
+    },
   },
   {
     slug: 'conclusion',

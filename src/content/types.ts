@@ -99,8 +99,13 @@ export type Visualization = {
   id: string
   title: string
   kind: VisualizationKind
-  /** Embed/share URL for iframe-based tools. Leave '' until it's published; a placeholder box shows instead. */
+  /**
+   * URL the iframe loads. Leave '' until it's published; a placeholder box shows instead.
+   * Tableau Public: https://public.tableau.com/views/<Workbook>/<View>?:showVizHome=no&:embed=true
+   */
   embedUrl?: string
+  /** The original's own page (e.g. its Tableau Public profile page), linked under the chart. */
+  link?: string
   /** For kind 'image': a path inside /public, e.g. '/images/chart.png'. */
   image?: string
   /** CSS aspect ratio of the embed, e.g. '16 / 9' (default) or '4 / 3'. */

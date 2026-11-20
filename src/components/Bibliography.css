@@ -24,6 +24,11 @@
   padding-left: 2em;
 }
 
+/* annotations with several paragraphs (a blank line between them in the Doc) */
+.bibliography__annotation p + p {
+  margin-top: 0.5em;
+}
+
 .bibliography__link {
   display: inline-block;
   margin-top: 0.35em;

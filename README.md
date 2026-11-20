@@ -51,15 +51,17 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 2. In the Doc, put the id on its own line where the chart should appear:
 
    ```
-   [[viz:refugee-arrivals-map]]
+   [[viz:refugee-declines-map]]
    ```
 
-3. When the chart is published (Tableau Public, Flourish, ArcGIS, Voyant…), paste its embed URL into `embedUrl`. Until then a placeholder box shows the spot.
+3. When the chart is published (Tableau Public, Flourish, ArcGIS, Voyant…), paste its embed URL into `embedUrl`. Until then a placeholder box shows the spot. Put the chart's own page in `link` to add an "open the original" link under it.
+
+   For Tableau Public, take the workbook and sheet names from the viz's address (`…/viz/<Workbook>/<Sheet>`) and use `https://public.tableau.com/views/<Workbook>/<Sheet>?:showVizHome=no&:embed=true`. If the chart looks cramped or has empty space, change its `aspectRatio` (default `'16 / 9'`).
 
 ## Team, bibliography, chapters
 
 - **Team member:** edit `src/content/team.ts`. For a photo, add a square image to `src/assets/team/`, import it at the top of the file and set `photo`.
-- **Bibliography entry:** add to `src/content/bibliography.ts`. Entries are sorted alphabetically; use `*asterisks*` for italic titles.
+- **Bibliography entry:** add to `src/content/bibliography.ts`. Entries are sorted alphabetically (a leading "The", "A" or "An" is ignored); use `*asterisks*` for italic titles.
 - **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order.
 
 ## Hero background clip

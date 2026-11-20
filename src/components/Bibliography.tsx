@@ -10,8 +10,13 @@ const GROUPS: { kind: BibliographyEntry['kind']; title: string }[] = [
   { kind: 'tool', title: 'Tools & Methods' },
 ]
 
-// Alphabetical by citation, ignoring Markdown punctuation (*, [, ").
-const sortKey = (entry: BibliographyEntry) => entry.citation.replace(/[^\p{L}\p{N} ]/gu, '').toLowerCase()
+// Alphabetical by citation, ignoring punctuation and a leading "The"/"A"/"An"
+// (so an untitled work like “The Biden Administration…” files under B).
+const sortKey = (entry: BibliographyEntry) =>
+  entry.citation
+    .replace(/[^\p{L}\p{N} ]/gu, '')
+    .toLowerCase()
+    .replace(/^(the|a|an) /, '')
 
 export default function Bibliography() {
   const groups = GROUPS.map((group) => ({

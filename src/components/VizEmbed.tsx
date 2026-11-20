@@ -47,7 +47,15 @@ export default function VizEmbed({ id }: { id: string }) {
       </div>
       <figcaption className="viz__caption">
         <span className="viz__title">{viz.title}.</span> {viz.caption}
-        <span className="viz__credit">{viz.credit}</span>
+        <span className="viz__credit">
+          {viz.credit}
+          {viz.link && (
+            <>
+              {' · '}
+              <a href={viz.link}>{viz.kind === 'tableau' ? 'Open in Tableau Public' : 'Open the original'}</a>
+            </>
+          )}
+        </span>
       </figcaption>
       {viz.kind !== 'image' && (
         <details className="viz__description">
