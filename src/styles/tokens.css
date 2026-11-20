@@ -31,7 +31,7 @@
   --fs-hero: clamp(2.75rem, 5vw, 6rem); /* 96 */
   --fs-display: clamp(1.75rem, 2.5vw, 3rem); /* 48 */
   --fs-hero-caption: clamp(1.125rem, 2.0833vw, 2.5rem); /* 40 */
-  --fs-footer: clamp(0.9375rem, 1.875vw, 2.25rem); /* 36 */
+  --fs-footer: clamp(1.0625rem, 1.4583vw, 1.75rem); /* 28 */
   --fs-card-title: clamp(1.25rem, 1.6667vw, 2rem); /* 32 */
   --fs-field: clamp(1.25rem, 1.6667vw, 2rem); /* 32 */
   --fs-question: clamp(1.0625rem, 1.4583vw, 1.75rem); /* 28 */
@@ -58,7 +58,7 @@
   --tab-h: calc(var(--bar-h) * 52 / 64);
   --tab-edge-w: calc(var(--tab-h) * 50 / 52);
 
-  --footer-h: clamp(96px, 10.4167vw, 200px); /* 200 */
+  --footer-h: clamp(84px, 10vw, 120px); /* 200 */
   --footer-pad-x: clamp(16px, 6.25vw, 120px); /* 120 */
 }
 
