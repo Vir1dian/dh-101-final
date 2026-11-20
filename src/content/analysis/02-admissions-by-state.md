@@ -18,6 +18,8 @@ Measured relative to population, the decline after 2017 was steepest not in the 
 
 ## Refugee Declines by State
 
+*By Jai Binning*
+
 [[viz:refugee-decline-by-state]]
 
 ### Chart type

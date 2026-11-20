@@ -19,9 +19,22 @@
   text-indent: -2em;
 }
 
+/* collapsed by default; the toggle matches the "Text description" one under charts */
 .bibliography__annotation {
   margin-top: 0.35em;
   padding-left: 2em;
+}
+
+.bibliography__annotation > summary {
+  color: var(--card-muted, var(--ink-muted));
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.bibliography__annotation > summary + * {
+  margin-top: 0.35em;
 }
 
 /* annotations with several paragraphs (a blank line between them in the Doc) */

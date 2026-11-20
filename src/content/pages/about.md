@@ -1,6 +1,6 @@
 ## Meet the Team
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas pretium ex ac molestie. Sed non diam leo. Sed vestibulum erat ac magna fermentum sodales non nec velit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse luctus eget leo nec pellentesque. Curabitur posuere turpis at pellentesque tempor. Nam hendrerit ex velit. Proin euismod commodo magna, quis pellentesque quam rhoncus nec.
+First of all, TravelCrew is a student research team at the University of California, Los Angeles (UCLA). This group is dedicated to exploring the immigration patterns across the United States. Within this group, we utilize the publicly available data from the Department of Homeland Security (DHS) to analyze the changes in immigration trends over time and the differences in these patterns among various states. Our project combines data visualization, geographic analysis, and historical context to gain a deeper understanding of these changes. Additionally, through this website, we aim to make the complex immigration data more accessible and encourage readers to critically examine the social and political factors that shape the immigration phenomenon in the United States.
 
 ## Project Methodology
 

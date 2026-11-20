@@ -48,29 +48,34 @@ export const visualizations: Visualization[] = [
       'Line chart of yearly refugee admissions (orange) and asylum grants (blue), FY2013–2024, with shaded bands for the Obama, Trump and Biden administrations and a note marking the 2020 COVID-19 shutdowns. The refugee line falls sharply after 2016 while the asylee line rises until 2019; both drop to their lows in 2021 and climb to their highs in 2024.',
     credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Jai Binning, Tableau Public.',
   },
-  // Digital Method 4 (Analysis → Administrations and COVID-19). TODO: embed URL
+  // Digital Method 4 (Analysis → Administrations and COVID-19)
   {
     id: 'affirmative-vs-defensive-asylum',
     title: 'Affirmative and defensive asylum grants by year',
     kind: 'tableau',
-    embedUrl: '',
+    embedUrl:
+      'https://public.tableau.com/views/AsylumCasesStackedBarChart/AsluymCasesStackedBar?:showVizHome=no&:embed=true',
+    link: 'https://public.tableau.com/app/profile/melvin.tam1944/viz/AsylumCasesStackedBarChart/AsluymCasesStackedBar',
+    aspectRatio: '16 / 10',
     caption:
       'Both kinds of asylum grants climbed after 2017 and peaked in 2019, with defensive grants growing faster than before.',
     description:
       'Stacked bar chart with one bar per year, split into affirmative and defensive asylum grants. Totals stay fairly steady from 2013 to 2016, then rise after 2017 to a peak in 2019. A slider lets you choose which years to show.',
-    credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Travel Crew.',
+    credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Melvin Tam, Tableau Public.',
   },
-  // Digital Method 5 (Analysis → Admissions by State). TODO: embed URL
+  // Digital Method 5 (Analysis → Admissions by State)
   {
     id: 'refugee-decline-by-state',
     title: 'Percent decline in yearly refugee admissions by state, 2013–16 vs. 2017–19',
     kind: 'tableau',
-    embedUrl: '',
+    embedUrl: 'https://public.tableau.com/views/BarGraphDH101/Dashboard1?:showVizHome=no&:embed=true',
+    link: 'https://public.tableau.com/app/profile/jai.binning/viz/BarGraphDH101/Dashboard1',
+    aspectRatio: '5 / 4',
     caption:
       'Every included state saw fewer refugee admissions after 2017, from an 80% drop in Louisiana to 15% in Iowa. States that averaged fewer than 100 refugees a year before 2017 are left out.',
     description:
       'Horizontal bar chart of states sorted from largest to smallest percent decline in average yearly refugee admissions between 2013–2016 and 2017–2019, each bar labeled with its value. Louisiana, Alabama and Florida declined most; Iowa, South Carolina and Washington least; about two-thirds of states fell between 46% and 64%.',
-    credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Travel Crew.',
+    credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Jai Binning, Tableau Public.',
   },
   // Research question ii (Analysis → Political Leaning). Not made yet.
   {

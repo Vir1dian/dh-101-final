@@ -18,6 +18,8 @@ The diverging lines in the chart show that administration-level immigration is n
 
 ## Affirmative and Defensive Asylum
 
+*By Melvin Tam*
+
 [[viz:affirmative-vs-defensive-asylum]]
 
 ### Chart type

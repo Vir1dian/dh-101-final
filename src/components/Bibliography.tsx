@@ -38,9 +38,10 @@ export default function Bibliography() {
                   <Markdown source={entry.citation} />
                 </div>
                 {entry.annotation && (
-                  <div className="bibliography__annotation">
+                  <details className="bibliography__annotation">
+                    <summary>Annotation</summary>
                     <Markdown source={entry.annotation} />
-                  </div>
+                  </details>
                 )}
                 {entry.url && (
                   <a className="bibliography__link" href={entry.url}>
