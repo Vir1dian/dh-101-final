@@ -62,7 +62,7 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 
 - **Team member:** edit `src/content/team.ts`. For a photo, add a square image to `src/assets/team/`, import it at the top of the file and set `photo`.
 - **Bibliography entry:** add to `src/content/bibliography.ts`. Entries are sorted alphabetically (a leading "The", "A" or "An" is ignored); use `*asterisks*` for italic titles.
-- **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order.
+- **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order. The dropdown under the Analysis tab picks it up automatically, numeral and all, and widens to fit the longest title.
 
 ## Hero background clip
 

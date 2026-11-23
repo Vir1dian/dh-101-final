@@ -21,6 +21,7 @@
   --id-card-edge: #c6c6d9; /* their dashed top/bottom edges */
   --id-slate: #6b6b8b; /* ID label strip + dashed frame */
   --board: #393836; /* About page clipboard panel */
+  --slip: #cedf8c; /* Analysis chapter slip under the nav tab */
   --watermark: rgba(0, 38, 143, 0.05);
   --hero-overlay: rgba(0, 0, 0, 0.6);
 
