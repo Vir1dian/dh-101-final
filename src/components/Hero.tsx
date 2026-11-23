@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { NavLink } from 'react-router'
+import { site } from '../content/site'
 import type { HeroConfig } from '../content/types'
 import './Hero.css'
 
@@ -68,6 +70,35 @@ export default function Hero({ hero }: { hero: HeroConfig }) {
             {hero.cta}
           </button>
         </div>
+
+        {/* the same pages as the nav bar's tabs, listed down the right side */}
+        <nav className="hero__nav" aria-label="Pages">
+          <ul className="hero__tabs">
+            {site.nav.map((item) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className="hero__tab"
+                  // Home is this page already, so it does what Explore does: scrolls
+                  // down to the content, so it doesn't look like the hero is all there is.
+                  // (Ctrl/Cmd/Shift-click still opens it in a new tab or window.)
+                  onClick={
+                    item.to === '/'
+                      ? (event) => {
+                          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                          event.preventDefault()
+                          explore()
+                        }
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {(hero.caption || video) && (
           <div className="hero__footer">

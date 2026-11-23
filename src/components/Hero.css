@@ -8,6 +8,9 @@
 .hero {
   --hero-u: min(1vw, 1.7778svh);
   --hero-fs-display: clamp(1.5rem, calc(var(--hero-u) * 2.5), 3rem); /* 48 */
+  /* underline/border width, 4px at 1920. (4/19.2 = 0.2083 lands at 3.999px, which
+     browsers round down to 3px, so the multiplier overshoots and the cap holds it at 4.) */
+  --hero-rule: clamp(2px, calc(var(--hero-u) * 0.21), 4px);
   display: flex;
   min-height: 100svh;
   padding: clamp(12px, calc(var(--hero-u) * 2.0833), 40px);
@@ -51,6 +54,8 @@
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(16px, calc(var(--hero-u) * 8.125), 156px) clamp(10px, calc(var(--hero-u) * 1.5625), 30px) 0;
+  /* keep longer text from running under the page tabs on the right */
+  padding-right: calc(var(--hero-fs-display) * 7);
 }
 
 /* underlined text blocks */
@@ -58,7 +63,7 @@
 .hero__kicker,
 .hero__description {
   padding: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
-  border-bottom: clamp(2px, calc(var(--hero-u) * 0.2083), 4px) solid var(--paper);
+  border-bottom: var(--hero-rule) solid var(--paper);
   color: var(--paper);
   line-height: var(--lh-normal);
 }
@@ -85,7 +90,7 @@
   margin-left: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
   padding: clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(28px, calc(var(--hero-u) * 5), 96px)
     clamp(8px, calc(var(--hero-u) * 1.25), 24px) clamp(14px, calc(var(--hero-u) * 1.6667), 32px);
-  border: clamp(2px, calc(var(--hero-u) * 0.2083), 4px) solid var(--paper);
+  border: var(--hero-rule) solid var(--paper);
   background: transparent;
   color: var(--paper);
   font: inherit;
@@ -98,6 +103,45 @@
 }
 
 .hero__explore:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/*
+ * Page tabs down the right side, lined up with the caption. Each link is a box
+ * with only a bottom border (the underline), so on hover it fills in to the
+ * same inverted box as Explore.
+ */
+.hero__nav {
+  position: absolute;
+  top: clamp(16px, calc(var(--hero-u) * 10.7292), 206px);
+  right: clamp(12px, calc(var(--hero-u) * 1.9792), 38px);
+}
+
+.hero__tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(4px, calc(var(--hero-u) * 0.7292), 14px);
+  padding: 0;
+  list-style: none;
+}
+
+.hero__tab {
+  display: block;
+  padding: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
+  border-bottom: var(--hero-rule) solid var(--paper);
+  color: var(--paper);
+  font-size: var(--hero-fs-display);
+  line-height: var(--lh-normal);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.hero__tab:hover {
   background: var(--paper);
   color: var(--ink);
 }
@@ -152,5 +196,16 @@
 @media (max-width: 760px) {
   .hero__caption {
     max-width: none;
+  }
+}
+
+/* phones: no room beside the title, and the nav bar is right below the hero */
+@media (max-width: 600px) {
+  .hero__nav {
+    display: none;
+  }
+
+  .hero__content {
+    padding-right: clamp(10px, calc(var(--hero-u) * 1.5625), 30px);
   }
 }
