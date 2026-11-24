@@ -20,6 +20,7 @@ import conclusion from './analysis/05-conclusion.md?raw'
 
 import introductionPhoto from '../assets/analysis/chapterblock/gavinimmigration.jpg'
 import admissionsMap from '../assets/analysis/chapterblock/USstatesmap.webp'
+import politicalPhoto from '../assets/analysis/chapterblock/texascapitol.webp'
 import administrationsPhoto from '../assets/analysis/chapterblock/USCISBaltimoreOffice.webp'
 import conclusionPhoto from '../assets/analysis/chapterblock/passportPLACEHOLDER.webp'
 
@@ -56,7 +57,9 @@ export const chapters: Chapter[] = [
     slug: 'political-leaning',
     title: 'Political Leaning',
     summary: "How closely a state's admissions track its politics, 2013–2022.",
-    caption: 'Symbols of the Democratic and Republican parties',
+    caption: 'The Texas State Capitol in Austin',
+    // focus: the dome's base, the entrance and both wings, with little sky
+    image: { src: politicalPhoto, focus: '50% 63%', credit: 'Photo: Carol M. Highsmith / Library of Congress' },
     sourceDoc: '',
     body: politicalLeaning,
   },
