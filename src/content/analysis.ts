@@ -19,6 +19,7 @@ import administrationsAndCovid from './analysis/04-administrations-and-covid.md?
 import conclusion from './analysis/05-conclusion.md?raw'
 
 import introductionPhoto from '../assets/analysis/chapterblock/gavinimmigration.jpg'
+import admissionsMap from '../assets/analysis/chapterblock/USstatesmap.webp'
 import administrationsPhoto from '../assets/analysis/chapterblock/USCISBaltimoreOffice.webp'
 
 export const chapters: Chapter[] = [
@@ -41,6 +42,8 @@ export const chapters: Chapter[] = [
     title: 'Admissions by State',
     summary: 'How state-level refugee admissions shifted after 2017, and where they fell most.',
     caption: 'US state borders, stylized',
+    // focus: a band through the middle of the country, coast to coast
+    image: { src: admissionsMap, focus: '50% 37%', credit: 'Map: adapted from the USGS National Atlas' },
     sourceDoc: '',
     body: admissionsByState,
     cards: {
