@@ -251,8 +251,9 @@
 
 /* ---------- Variant: lead (bigger intro text — About style) ---------- */
 
+/* 28 at 1920: a step above body text (24), below the ID cards' fields (32) */
 .card--lead .card__body {
-  font-size: var(--fs-card-title);
+  font-size: var(--fs-question);
 }
 
 /* ---------- Variant: figure beside the text (Home intro style) ---------- */
