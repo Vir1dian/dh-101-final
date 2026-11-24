@@ -21,6 +21,7 @@ import conclusion from './analysis/05-conclusion.md?raw'
 import introductionPhoto from '../assets/analysis/chapterblock/gavinimmigration.jpg'
 import admissionsMap from '../assets/analysis/chapterblock/USstatesmap.webp'
 import administrationsPhoto from '../assets/analysis/chapterblock/USCISBaltimoreOffice.webp'
+import conclusionPhoto from '../assets/analysis/chapterblock/passportPLACEHOLDER.webp'
 
 export const chapters: Chapter[] = [
   {
@@ -77,7 +78,10 @@ export const chapters: Chapter[] = [
     slug: 'conclusion',
     title: 'Conclusion',
     summary: 'What the evidence adds up to, and what the data leaves out.',
-    caption: 'Stacks of passports on desk',
+    // placeholder photo until Gavin's shot of his family's passports
+    caption: 'A US passport, dollar bills and a smartphone',
+    // focus: the word "PASSPORT" on the cover, centred in the wide strip
+    image: { src: conclusionPhoto, focus: '50% 27%', credit: 'Photo: Dave Garcia / Pexels' },
     sourceDoc: '',
     body: conclusion,
   },
