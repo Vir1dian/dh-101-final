@@ -52,8 +52,27 @@ export type PageConfig = {
 export type Chapter = PageConfig & {
   /** URL segment: /analysis/<slug> */
   slug: string
-  /** One line for the chapter list on the Analysis page. */
+  /** One line under the title in the chapter's block (Analysis page list + top of its own page). */
   summary: string
+  /** Line in the block's bottom-right corner: what the photo shows (Figma "Image Description"). */
+  caption?: string
+  /** Photo behind the block. Without one, the block shows the hero's plain darkened background. */
+  image?: ChapterImage
+}
+
+export type ChapterImage = {
+  /** The photo: import it at the top of analysis.ts. */
+  src: string
+  /**
+   * Which part of the photo to keep when the block crops it, as two percentages
+   * (left→right, top→bottom), e.g. '70% 40%'. Default '50% 50%' (the middle).
+   * On wide screens the block is a thin strip, so the second number picks the
+   * horizontal band that shows; on phones it's closer to square, so the first
+   * number picks the slice.
+   */
+  focus?: string
+  /** Who took it and where it's from, e.g. 'Photo: Jane Doe / Pexels'. Shown after the caption. */
+  credit?: string
 }
 
 export type HeroConfig = {

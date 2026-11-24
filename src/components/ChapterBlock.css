@@ -1,0 +1,180 @@
+/*
+ * Chapter Block (Figma "Chapter Block", Design V2): a thin hero strip for one
+ * Analysis chapter. On the Analysis page the blocks are the links to the
+ * chapters; on a chapter's page its block is the header.
+ *
+ * Figma values at 1920 wide: 1520 × 197 with a one-line summary (the height
+ * follows the text), 24 padding, 88 × 88 numeral box, 24 between it and the
+ * text, 10 between title / summary / caption.
+ */
+.chapter-block {
+  --chapter-numeral: clamp(48px, 4.5833vw, 88px); /* 88 */
+  position: relative;
+  isolation: isolate; /* keeps the photo layers behind the text but inside the block */
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--card-pad); /* 24 */
+  padding: var(--card-pad); /* 24 */
+  border-radius: var(--radius); /* 24 */
+  /* without a photo, the overlay below darkens this paper: the hero's plain background */
+  background: var(--paper);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+/* photo, darkened like the hero's clip so the text reads */
+.chapter-block__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.chapter-block__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+}
+
+.chapter-block__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* object-position comes from the chapter's `focus` */
+}
+
+.chapter-block__numeral {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--chapter-numeral);
+  aspect-ratio: 1;
+  background: var(--ink);
+  font-family: var(--font-serif);
+  font-size: calc(var(--chapter-numeral) * 0.6364); /* 56 */
+  font-weight: 700;
+  line-height: 1;
+}
+
+.chapter-block__details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap); /* 10 */
+}
+
+.chapter-block__title {
+  font-size: var(--fs-display); /* 48 */
+  font-weight: 400;
+  line-height: var(--lh-normal);
+  text-decoration-thickness: from-font;
+}
+
+.chapter-block__summary {
+  font-size: var(--fs-body); /* 24 */
+  line-height: var(--lh-normal);
+}
+
+.chapter-block__caption {
+  color: var(--paper-muted);
+  font-size: var(--fs-body); /* 24 */
+  line-height: var(--lh-normal);
+  text-align: right;
+}
+
+.chapter-block__credit {
+  display: block;
+  font-size: max(0.875rem, 0.75em);
+}
+
+/*
+ * Hover (Figma's hovered block in "Analysis Content"): the background lifts by
+ * the ink colour, added on top of it ("plus lighter"), and the title is
+ * underlined. The numeral box stays ink, and the text gets a see-through ink
+ * highlight, like the chapter slip's highlighted row, so it stays readable on
+ * the lighter background. Keyboard focus looks the same.
+ */
+.chapter-block--link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* above the photo and its overlay, below the text */
+  background: var(--ink);
+  mix-blend-mode: plus-lighter;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+/* browsers without "plus lighter": a plain light wash instead */
+@supports not (mix-blend-mode: plus-lighter) {
+  .chapter-block--link::after {
+    background: rgba(228, 213, 201, 0.2);
+    mix-blend-mode: normal;
+  }
+}
+
+.chapter-block--link:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+.chapter-block--link:is(:hover, :focus-visible) .chapter-block__title {
+  text-decoration-line: underline;
+}
+
+/*
+ * The highlight hugs each line of text and reaches 10px past both ends, as on
+ * the chapter slip. The side shadows are that reach, so the text doesn't move.
+ * 65% ink keeps even the caption above 3:1 on the lifted background.
+ */
+.chapter-block__mark {
+  --mark-reach: var(--card-gap); /* 10 */
+  background-color: transparent;
+  box-shadow:
+    calc(var(--mark-reach) * -1) 0 0 transparent,
+    var(--mark-reach) 0 0 transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition:
+    background-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.chapter-block--link:is(:hover, :focus-visible) .chapter-block__mark {
+  --mark: color-mix(in srgb, var(--ink) 65%, transparent);
+  background-color: var(--mark);
+  box-shadow:
+    calc(var(--mark-reach) * -1) 0 0 var(--mark),
+    var(--mark-reach) 0 0 var(--mark);
+}
+
+/* the Analysis page's list of blocks */
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.25vw, 24px); /* 24 */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* phones (not in the Figma yet): numeral beside the title, the rest full width underneath */
+@media (max-width: 600px) {
+  .chapter-block {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--card-pad);
+    row-gap: var(--card-gap);
+  }
+
+  .chapter-block__details {
+    display: contents;
+  }
+
+  .chapter-block__summary,
+  .chapter-block__caption {
+    grid-column: 1 / -1;
+  }
+}

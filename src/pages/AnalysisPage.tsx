@@ -1,31 +1,25 @@
-import { Link } from 'react-router'
+import ChapterBlock from '../components/ChapterBlock'
 import { MarkdownCards } from '../components/Markdown'
-import PaperCard from '../components/PaperCard'
 import { chapters } from '../content/analysis'
 import { analysisPage } from '../content/pages'
 import { site } from '../content/site'
 import { pageTitle } from '../lib/site-url'
 import './pages.css'
 
-/** Analysis landing page: intro + list of chapters. */
+/** Analysis landing page (Figma "Analysis Content"): intro, then a block for each chapter. */
 export default function AnalysisPage() {
   return (
     <div className="page">
       <title>{pageTitle(analysisPage.title, site.title)}</title>
       <h1 className="visually-hidden">{analysisPage.title}</h1>
       <MarkdownCards source={analysisPage.body} cards={analysisPage.cards} />
-      <PaperCard id="chapters" title="Chapters" ruled numerals>
-        <ol>
-          {chapters.map((chapter) => (
-            <li key={chapter.slug}>
-              <Link className="chapter-link" to={`/analysis/${chapter.slug}`}>
-                {chapter.title}
-              </Link>
-              <span className="chapter-summary">{chapter.summary}</span>
-            </li>
-          ))}
-        </ol>
-      </PaperCard>
+      <ol className="chapter-list" aria-label="Chapters">
+        {chapters.map((chapter, index) => (
+          <li key={chapter.slug}>
+            <ChapterBlock chapter={chapter} number={index + 1} to={`/analysis/${chapter.slug}`} />
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }

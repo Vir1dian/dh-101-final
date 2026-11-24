@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import ChapterBlock from '../components/ChapterBlock'
 import { MarkdownCards } from '../components/Markdown'
 import { chapters } from '../content/analysis'
 import { site } from '../content/site'
@@ -26,7 +27,8 @@ export default function ChapterPage() {
           Chapter {index + 1} of {chapters.length}
         </span>
       </nav>
-      <h1 className="visually-hidden">{chapter.title}</h1>
+      {/* the chapter's block from the Analysis page, as this page's header (its title is the h1) */}
+      <ChapterBlock chapter={chapter} number={index + 1} />
       <MarkdownCards source={chapter.body} cards={chapter.cards} />
       <nav className="chapter-nav" aria-label="Chapters">
         {previous ? (

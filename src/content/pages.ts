@@ -75,8 +75,12 @@ export const sourcesPage: PageConfig = {
   body: sourcesBody,
 }
 
+// The chapter blocks under the intro come from analysis.ts.
 export const analysisPage: PageConfig = {
   title: 'Analysis',
   sourceDoc: '',
   body: analysisBody,
+  cards: {
+    analysis: { tone: 'open' },
+  },
 }

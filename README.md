@@ -62,7 +62,7 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 
 - **Team member:** edit `src/content/team.ts`. For a photo, add a square image to `src/assets/team/`, import it at the top of the file and set `photo`.
 - **Bibliography entry:** add to `src/content/bibliography.ts`. Entries are sorted alphabetically (a leading "The", "A" or "An" is ignored); use `*asterisks*` for italic titles.
-- **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order. The dropdown under the Analysis tab picks it up automatically, numeral and all, and widens to fit the longest title.
+- **Analysis chapter:** add a `.md` file in `src/content/analysis/`, import it in `analysis.ts` and add an entry. The order in that list is the reading order. The dropdown under the Analysis tab picks it up automatically, numeral and all, and widens to fit the longest title. The entry's `summary` and `caption` are the text on the chapter's block (see below).
 
 ## Hero background clip
 
@@ -80,4 +80,14 @@ ffmpeg -i hero-clip.mp4 -frames:v 1 hero-poster.jpg
 ```
 
 The clip pauses itself while scrolled out of view. It has a pause button, and it starts paused for visitors whose system is set to reduce motion (the poster shows instead). Without a clip, the hero shows its plain dark background.
+
+## Chapter photos
+
+Each Analysis chapter has a block, a thin strip like the hero: it's the chapter's link on the Analysis page and the header at the top of its own page. Without a photo it shows the hero's plain dark background.
+
+1. Put the photo in `src/assets/analysis/` (for example `introduction.jpg`).
+2. In `src/content/analysis.ts`, import it at the top and add `image: { src: …, focus: '50% 50%', credit: 'Photo: … / Pexels' }` to the chapter. The commented-out lines for the Introduction show the pattern.
+3. Use `caption` to say what the photo shows; the photo itself is hidden from screen readers.
+
+The block crops the photo to fit. On wide screens it's a thin strip (about 7.7:1 at 1920 wide, so only a band about a fifth of a 3:2 photo's height shows); on phones it's closer to square. Pick landscape photos whose subject fits in a horizontal band, then set `focus` to keep it in view: the second number (top → bottom) picks the band on wide screens, the first (left → right) picks the slice on phones. Export about 2400 px wide as JPG or WebP, ideally under 300 KB.
 

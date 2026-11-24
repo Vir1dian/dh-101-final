@@ -1,27 +1,8 @@
 import { NavLink } from 'react-router'
 import thumbWatermark from '../assets/nav/thumbwatermark.png'
 import { chapters } from '../content/analysis'
+import { roman } from '../lib/roman'
 import './ChapterMenu.css'
-
-const ROMAN: [number, string][] = [
-  [10, 'x'],
-  [9, 'ix'],
-  [5, 'v'],
-  [4, 'iv'],
-  [1, 'i'],
-]
-
-/** 1 → i, 4 → iv, 12 → xii */
-function roman(n: number) {
-  let out = ''
-  for (const [value, digits] of ROMAN) {
-    while (n >= value) {
-      out += digits
-      n -= value
-    }
-  }
-  return out
-}
 
 /**
  * The paper slip of chapter links under the Analysis tab (Figma "Analysis
