@@ -15,7 +15,7 @@
   --hero-text-pad: clamp(4px, calc(var(--hero-u) * 0.5208), 10px);
   /* the right-hand column's distance from the card's edge, 38 at 1920 */
   --hero-edge: clamp(12px, calc(var(--hero-u) * 1.9792), 38px);
-  /* between the tabs (and the pause button under them), 14 at 1920 */
+  /* between the tabs, and between the caption and the pause button, 14 at 1920 */
   --hero-tab-gap: clamp(4px, calc(var(--hero-u) * 0.7292), 14px);
   display: flex;
   min-height: 100svh;
@@ -25,9 +25,10 @@
 
 /*
  * Two columns: the title, kicker, description and Explore on the left; the tabs
- * and pause button down the right, with the caption at the bottom right. The
- * text block spans the whole card and the caption spans both columns, so the
- * card is as tall as the taller of the two sides, never the two stacked.
+ * down the right, with the caption and then the pause button at the bottom
+ * right. The text block spans the whole card and the caption and button span
+ * both columns, so the card is as tall as the taller of the two sides, never
+ * the two stacked.
  */
 .hero__card {
   position: relative;
@@ -35,7 +36,7 @@
   flex: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--paper);
@@ -63,7 +64,7 @@
 }
 
 .hero__content {
-  grid-area: 1 / 1 / 3 / 3;
+  grid-area: 1 / 1 / 4 / 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -121,20 +122,15 @@
   color: var(--ink);
 }
 
-/* right-hand column: page tabs, then the pause button, right edges lined up */
-.hero__side {
+/*
+ * Page tabs down the right side. Each link is a box with only a bottom border
+ * (the underline), so on hover it fills in to the same inverted box as Explore.
+ */
+.hero__nav {
   grid-area: 1 / 2 / 2 / 3;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--hero-tab-gap);
   margin: clamp(16px, calc(var(--hero-u) * 10.7292), 206px) var(--hero-edge) 0 0;
 }
 
-/*
- * Page tabs. Each link is a box with only a bottom border (the underline), so
- * on hover it fills in to the same inverted box as Explore.
- */
 .hero__tabs {
   display: flex;
   flex-direction: column;
@@ -164,17 +160,18 @@
 }
 
 /*
- * What the clip shows + credit, bottom right. Its right edge lines up with the
- * tab text (the column's edge plus the tabs' padding). The width is in em, so
- * it wraps the same way at every window size, and balance evens out the lines.
+ * What the clip shows + credit, bottom right, above the pause button. Its right
+ * edge lines up with the tab text (the column's edge plus the tabs' padding).
+ * The width is in em, so it wraps the same way at every window size, and
+ * balance evens out the lines.
  */
 .hero__caption {
   grid-area: 2 / 1 / 3 / 3;
   align-self: end;
   justify-self: end;
   max-width: 22em;
-  margin: var(--hero-tab-gap) calc(var(--hero-edge) + var(--hero-text-pad))
-    clamp(12px, calc(var(--hero-u) * 3.125), 60px) var(--hero-edge);
+  margin: var(--hero-tab-gap) calc(var(--hero-edge) + var(--hero-text-pad)) var(--hero-tab-gap)
+    var(--hero-edge);
   color: var(--paper-muted);
   font-size: clamp(1rem, calc(var(--hero-u) * 2.0833), 2.5rem); /* 40 */
   line-height: var(--lh-normal);
@@ -188,8 +185,11 @@
   font-size: max(0.875rem, 0.45em);
 }
 
+/* play/pause, the very bottom-right corner; its box lines up with the tab boxes */
 .hero__toggle {
-  flex: none;
+  grid-area: 3 / 1 / 4 / 3;
+  justify-self: end;
+  margin: 0 var(--hero-edge) clamp(12px, calc(var(--hero-u) * 3.125), 60px) 0;
   display: grid;
   place-items: center;
   width: clamp(32px, calc(var(--hero-u) * 2.5), 48px);
@@ -212,12 +212,11 @@
 
 /*
  * phones: no room beside the title, and the nav bar is right below the hero.
- * One column: the text, then at the bottom the pause button over the caption.
+ * One column: the text, then at the bottom the caption over the pause button.
  */
 @media (max-width: 600px) {
   .hero__card {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto auto;
   }
 
   .hero__content {
@@ -229,13 +228,12 @@
     display: none;
   }
 
-  .hero__side {
-    grid-area: 3 / 1;
-    margin-top: 0;
+  .hero__caption {
+    grid-area: 2 / 1;
+    max-width: none;
   }
 
-  .hero__caption {
-    grid-area: 4 / 1;
-    max-width: none;
+  .hero__toggle {
+    grid-area: 3 / 1;
   }
 }

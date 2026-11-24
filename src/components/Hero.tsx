@@ -71,60 +71,59 @@ export default function Hero({ hero }: { hero: HeroConfig }) {
           </button>
         </div>
 
-        {/* right-hand column: the same pages as the nav bar's tabs, then the clip's pause button */}
-        <div className="hero__side">
-          <nav className="hero__nav" aria-label="Pages">
-            <ul className="hero__tabs">
-              {site.nav.map((item) => (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    end={item.to === '/'}
-                    className="hero__tab"
-                    // Home is this page already, so it does what Explore does: scrolls
-                    // down to the content, so it doesn't look like the hero is all there is.
-                    // (Ctrl/Cmd/Shift-click still opens it in a new tab or window.)
-                    onClick={
-                      item.to === '/'
-                        ? (event) => {
-                            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-                            event.preventDefault()
-                            explore()
-                          }
-                        : undefined
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          {video && (
-            // Anything that moves on its own for more than 5 seconds needs a way to stop it (WCAG 2.2.2).
-            <button
-              type="button"
-              className="hero__toggle"
-              onClick={() => setPaused((p) => !p)}
-              aria-label={paused ? 'Play background video' : 'Pause background video'}
-              title={paused ? 'Play background video' : 'Pause background video'}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                {paused ? (
-                  <path d="M7 4.5v15l12.5-7.5z" fill="currentColor" />
-                ) : (
-                  <path d="M6.5 4.5h4v15h-4zm7 0h4v15h-4z" fill="currentColor" />
-                )}
-              </svg>
-            </button>
-          )}
-        </div>
+        {/* the same pages as the nav bar's tabs, listed down the right side */}
+        <nav className="hero__nav" aria-label="Pages">
+          <ul className="hero__tabs">
+            {site.nav.map((item) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className="hero__tab"
+                  // Home is this page already, so it does what Explore does: scrolls
+                  // down to the content, so it doesn't look like the hero is all there is.
+                  // (Ctrl/Cmd/Shift-click still opens it in a new tab or window.)
+                  onClick={
+                    item.to === '/'
+                      ? (event) => {
+                          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                          event.preventDefault()
+                          explore()
+                        }
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {(hero.caption || video?.credit) && (
           <p className="hero__caption">
             {hero.caption}
             {video?.credit && <span className="hero__credit">{video.credit}</span>}
           </p>
+        )}
+
+        {video && (
+          // Anything that moves on its own for more than 5 seconds needs a way to stop it (WCAG 2.2.2).
+          <button
+            type="button"
+            className="hero__toggle"
+            onClick={() => setPaused((p) => !p)}
+            aria-label={paused ? 'Play background video' : 'Pause background video'}
+            title={paused ? 'Play background video' : 'Pause background video'}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              {paused ? (
+                <path d="M7 4.5v15l12.5-7.5z" fill="currentColor" />
+              ) : (
+                <path d="M6.5 4.5h4v15h-4zm7 0h4v15h-4z" fill="currentColor" />
+              )}
+            </svg>
+          </button>
         )}
       </div>
     </header>
