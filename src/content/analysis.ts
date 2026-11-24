@@ -19,6 +19,7 @@ import administrationsAndCovid from './analysis/04-administrations-and-covid.md?
 import conclusion from './analysis/05-conclusion.md?raw'
 
 import introductionPhoto from '../assets/analysis/chapterblock/gavinimmigration.jpg'
+import administrationsPhoto from '../assets/analysis/chapterblock/USCISBaltimoreOffice.webp'
 
 export const chapters: Chapter[] = [
   {
@@ -59,7 +60,9 @@ export const chapters: Chapter[] = [
     slug: 'administrations-and-covid',
     title: 'Administrations & COVID-19',
     summary: 'Refugee and asylum admissions across administrations, and how the pandemic complicates the comparison.',
-    caption: 'USCIS Field Office',
+    caption: 'The USCIS field office in Baltimore, Maryland',
+    // focus: the middle of the photo's lower half, so the strip is building, not sky
+    image: { src: administrationsPhoto, focus: '50% 78%', credit: 'Photo: USCIS' },
     sourceDoc: '',
     body: administrationsAndCovid,
     cards: {
