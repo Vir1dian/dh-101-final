@@ -18,15 +18,16 @@ import politicalLeaning from './analysis/03-political-leaning.md?raw'
 import administrationsAndCovid from './analysis/04-administrations-and-covid.md?raw'
 import conclusion from './analysis/05-conclusion.md?raw'
 
-// import introductionPhoto from '../assets/analysis/introduction.jpg'
+import introductionPhoto from '../assets/analysis/chapterblock/gavinimmigration.jpg'
 
 export const chapters: Chapter[] = [
   {
     slug: 'introduction',
     title: 'Introduction',
     summary: 'The project’s opening, the policy background behind the data, and a policy timeline.',
-    caption: 'Buses along a road',
-    // image: { src: introductionPhoto, focus: '50% 50%', credit: 'Photo: … / Pexels' },
+    caption: 'Gavin (second from left) and his family arriving in the US, almost a decade ago',
+    // focus: Gavin's face, with the "welcome" sign just above it in the wide strip
+    image: { src: introductionPhoto, focus: '53% 41%' },
     sourceDoc: '',
     body: introduction,
     cards: {
