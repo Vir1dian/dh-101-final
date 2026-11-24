@@ -17,11 +17,12 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Two jobs, as deploy-pages recommends: GitHub's list of a run's artifacts can
+# lag a moment behind an upload, so deploying in the same job right after the
+# upload sometimes finds nothing ("No artifacts named github-pages"). Starting
+# a second job gives the list time to catch up.
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,6 +44,14 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
