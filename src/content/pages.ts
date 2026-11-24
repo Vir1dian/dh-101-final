@@ -12,18 +12,24 @@ import dataBody from './pages/data.md?raw'
 import sourcesBody from './pages/sources.md?raw'
 import analysisBody from './pages/analysis.md?raw'
 
-// Hero background clip: put the files in src/assets/home/, then uncomment these
-// two lines and the `video` line below. See the README for size tips.
-// import heroClip from '../assets/home/hero-clip.mp4'
-// import heroPoster from '../assets/home/hero-poster.jpg'
+// Hero background clip and its first frame, in src/assets/hero/. To swap in a
+// new cut, point these two lines at the new files. See the README for size tips.
+import heroClip from '../assets/hero/DH101HeroV1.mp4'
+import heroPoster from '../assets/hero/DH101HeroV1-poster.jpg'
 
 export const hero: HeroConfig = {
   title: 'Immigration Archive',
   kicker: 'UCLA DH 101',
   description: 'Short description of our project here',
   cta: 'Explore',
-  caption: 'looping gif and description here',
-  // video: { src: heroClip, poster: heroPoster, credit: 'Footage: …' },
+  // What the clip shows, in order (screen readers get this instead of the video).
+  caption:
+    'A bus in the Atacama Desert, a plane leaving Alicante, a ferry in Istanbul and a train crossing a bridge',
+  video: {
+    src: heroClip,
+    poster: heroPoster,
+    credit: 'Footage: Florian Delée, Antonio Sáez, zeynep yılmaz and David Pickup / Pexels',
+  },
 }
 
 export const homePage: PageConfig = {

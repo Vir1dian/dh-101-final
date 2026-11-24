@@ -68,8 +68,8 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 
 The Home hero can play a looping clip behind the title, darkened so the text stays readable.
 
-1. Put the clip and a still frame from it in `src/assets/home/` (for example `hero-clip.mp4` and `hero-poster.jpg`).
-2. In `src/content/pages.ts`, uncomment the two `import` lines and the `video:` line, and fill in the credit.
+1. Put the clip and a still frame from it in `src/assets/hero/` (the current ones are `DH101HeroV1.mp4` and `DH101HeroV1-poster.jpg`). Use the clip's first frame, so nothing jumps when it starts playing.
+2. In `src/content/pages.ts`, point the two `import` lines at them and update the `credit`.
 3. Use `caption` to say what the clip shows; the video itself is hidden from screen readers.
 
 Keep the file small, since every visit to the Home page loads it: MP4, no audio, 5–15 seconds that loop cleanly, 1280×720 or 1920×1080, ideally a few MB. With [ffmpeg](https://ffmpeg.org):
