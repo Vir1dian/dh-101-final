@@ -50,7 +50,7 @@ export const chapters: Chapter[] = [
     body: admissionsByState,
     cards: {
       'refugee-declines-mapped': { tone: 'open' },
-      'refugee-declines-by-state': { tone: 'id' },
+      'refugee-arrivals-by-year': { tone: 'id' },
     },
   },
   {

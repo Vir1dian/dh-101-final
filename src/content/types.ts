@@ -127,8 +127,15 @@ export type Visualization = {
   link?: string
   /** For kind 'image': a path inside /public, e.g. '/images/chart.png'. */
   image?: string
-  /** CSS aspect ratio of the embed, e.g. '16 / 9' (default) or '4 / 3'. */
+  /** CSS aspect ratio of the embed, e.g. '16 / 9' (default) or '4 / 3'. Ignored while `fixedSize` is set. */
   aspectRatio?: string
+  /**
+   * Only for a Tableau dashboard left at a fixed size (Tableau: Dashboard → Size → Fixed size):
+   * the size Tableau shows there, e.g. { width: 1000, height: 800 }. The site then shows the whole
+   * dashboard at that size, centred, and shrinks it to fit narrower cards, like a picture.
+   * Delete it once the dashboard is set to Automatic; it then fills its box like a single sheet.
+   */
+  fixedSize?: { width: number; height: number }
   /** Shown under the chart: what it shows and why it matters. */
   caption: string
   /** Text alternative for screen readers: the key pattern in words. */

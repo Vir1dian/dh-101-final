@@ -24,6 +24,17 @@
   object-fit: contain;
 }
 
+/* A Tableau dashboard with a fixed size (`fixedSize`): its own shape, never wider than that
+   size, centred in the card. */
+.viz__frame--fixed {
+  margin-inline: auto;
+}
+
+/* Laid out at a set size and shrunk to fit the box (see layoutFor in VizEmbed.tsx). */
+.viz__frame .viz__scaled {
+  transform-origin: 0 0;
+}
+
 .viz__placeholder {
   position: absolute;
   inset: 0;

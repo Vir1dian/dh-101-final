@@ -41,6 +41,9 @@ export const visualizations: Visualization[] = [
     kind: 'tableau',
     embedUrl: 'https://public.tableau.com/views/LineGraphDH101/Dashboard2?:showVizHome=no&:embed=true',
     link: 'https://public.tableau.com/app/profile/jai.binning/viz/LineGraphDH101/Dashboard2',
+    // A dashboard at Tableau's default fixed size. Delete `fixedSize` once Jai sets it to
+    // Automatic (Dashboard → Size); it then fills a 4:3 box like the other charts.
+    fixedSize: { width: 1000, height: 800 },
     aspectRatio: '4 / 3',
     caption:
       'Refugee admissions peaked at 85,020 in 2016 and fell to 22,390 by 2018, while asylum grants rose to 45,580 in 2019. Both reached their lowest points in 2021 and their highest in 2024.',
@@ -63,19 +66,22 @@ export const visualizations: Visualization[] = [
       'Stacked bar chart with one bar per year, split into affirmative and defensive asylum grants. Totals stay fairly steady from 2013 to 2016, then rise after 2017 to a peak in 2019. A slider lets you choose which years to show.',
     credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Melvin Tam, Tableau Public.',
   },
-  // Digital Method 5 (Analysis → Admissions by State)
+  // Animated map (Analysis → Admissions by State). Replaces Jai's bar chart (Digital Method 5).
+  // Caption and description describe the map as published on Nov 24; update them after Kevin's
+  // changes (smaller circles, lower 48, title, starting year).
   {
-    id: 'refugee-decline-by-state',
-    title: 'Percent decline in yearly refugee admissions by state, 2013–16 vs. 2017–19',
+    id: 'refugee-arrivals-by-year-map',
+    title: 'Refugee arrivals by state each year, FY2013–2024',
     kind: 'tableau',
-    embedUrl: 'https://public.tableau.com/views/BarGraphDH101/Dashboard1?:showVizHome=no&:embed=true',
-    link: 'https://public.tableau.com/app/profile/jai.binning/viz/BarGraphDH101/Dashboard1',
-    aspectRatio: '5 / 4',
+    embedUrl:
+      'https://public.tableau.com/views/7_1_17944694183500/RefugeePopulationFlucuationbyState?:showVizHome=no&:embed=true',
+    link: 'https://public.tableau.com/app/profile/kevin.blake5347/viz/7_1_17944694183500/RefugeePopulationFlucuationbyState',
+    aspectRatio: '16 / 10',
     caption:
-      'Every included state saw fewer refugee admissions after 2017, from an 80% drop in Louisiana to 15% in Iowa. States that averaged fewer than 100 refugees a year before 2017 are left out.',
+      'Each circle is one state’s refugee arrivals that year, colored by the administration in office. The circles shrink after 2017, are smallest around 2020–2021, and grow back to their largest by 2024. Use the arrows or the play button to step through the years.',
     description:
-      'Horizontal bar chart of states sorted from largest to smallest percent decline in average yearly refugee admissions between 2013–2016 and 2017–2019, each bar labeled with its value. Louisiana, Alabama and Florida declined most; Iowa, South Carolina and Washington least; about two-thirds of states fell between 46% and 64%.',
-    credit: 'Data: DHS Office of Homeland Security Statistics. Chart: Jai Binning, Tableau Public.',
+      'Animated map of North America with one circle per US state, sized by that year’s refugee arrivals and colored by administration: dark blue for Obama (2013–2016), red for Trump (2017–2020) and teal for Biden (2021–2024). A page control steps through the years and a checklist filters the states. In 2013–2017 and 2023–2024 the circles are large enough to overlap across much of the country; from 2018 to 2022 they are much smaller, smallest in 2020–2021. Texas, for example, had 7,470 arrivals in 2013.',
+    credit: 'Data: DHS Office of Homeland Security Statistics. Map: Kevin Blake, Tableau Public.',
   },
   // Research question ii (Analysis → Political Leaning). Not made yet.
   {

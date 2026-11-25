@@ -56,7 +56,9 @@ Don't edit the prose in the `.md` files directly until the lock, or the site and
 
 3. When the chart is published (Tableau Public, Flourish, ArcGIS, Voyant…), paste its embed URL into `embedUrl`. Until then a placeholder box shows the spot. Put the chart's own page in `link` to add an "open the original" link under it.
 
-   For Tableau Public, take the workbook and sheet names from the viz's address (`…/viz/<Workbook>/<Sheet>`) and use `https://public.tableau.com/views/<Workbook>/<Sheet>?:showVizHome=no&:embed=true`. If the chart looks cramped or has empty space, change its `aspectRatio` (default `'16 / 9'`).
+   For Tableau Public, take the workbook and sheet names from the viz's address (`…/viz/<Workbook>/<Sheet>`) and use `https://public.tableau.com/views/<Workbook>/<Sheet>?:showVizHome=no&:embed=true`. A single sheet fills its box at any width; change its `aspectRatio` (default `'16 / 9'`) to give it a better shape. Tableau never shrinks its own text, so on phones and small tablets Tableau embeds are laid out 700 px wide and shrunk to fit, like a picture.
+
+   A Tableau **dashboard** follows its own Size setting. Best: its author sets Dashboard → Size to **Automatic**, and it fills its box like a sheet. If it stays at a fixed size, add that size to its entry, e.g. `fixedSize: { width: 1000, height: 800 }` (the numbers Tableau shows under Size). The site then shows the whole dashboard at that size, centred, and shrinks it to fit narrower cards. Without `fixedSize`, a fixed dashboard gets scroll bars in a small box and sits in the top-left corner of a big one.
 
 ## Team, bibliography, chapters
 
